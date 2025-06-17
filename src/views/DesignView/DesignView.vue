@@ -32,6 +32,7 @@ function onSubmit() {
     <BaseForm>
       <DatePeriod
         v-model="formModel.period"
+        required
         :format-date="DATE_FNS_FORMAT_ISO_WITH_TIMEZONE"
         :format-dayjs="DATE_FORMAT_ISO_WITH_TIMEZONE"
         label="Период"
@@ -41,6 +42,7 @@ function onSubmit() {
       <FieldWrapper label="Сотрудник">
         <BaseSelect
           v-model="formModel.employee"
+          required
           multiple
           :options="exampleList"
           track-by="id"

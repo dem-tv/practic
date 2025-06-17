@@ -25,7 +25,7 @@ function onSubmit() {
     :link-to-back="{ name: ROUTE_NAME_MAIN }"
     title="Трудозатраты по проектам"
   >
-    <BaseForm>
+    <BaseForm @click.prevent>
       <DatePeriod
         v-model="formModel.period"
         required
@@ -36,7 +36,7 @@ function onSubmit() {
         name="date"
       />
       <HorizontalList>
-        <BaseButton>Подготовить к загрузке</BaseButton>
+        <BaseButton @click="onSubmit">Подготовить к загрузке</BaseButton>
       </HorizontalList>
     </BaseForm>
   </TitledContent>

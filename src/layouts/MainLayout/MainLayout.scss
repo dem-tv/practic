@@ -1,0 +1,24 @@
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100dvh;
+  padding: 20px;
+  overflow: hidden;
+  background: var(--color-bg-backdrop);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__content {
+    display: flex;
+    flex: 100%;
+    flex-direction: column;
+    gap: 28px;
+    padding: 20px;
+    background: var(--color-bg);
+    border-radius: var(--radius-normal);
+  }
+}

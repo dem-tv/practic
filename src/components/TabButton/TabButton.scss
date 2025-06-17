@@ -1,0 +1,52 @@
+.tab-button {
+  position: relative;
+  display: flex;
+  flex: 100%;
+  justify-content: center;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 24px 2px;
+  font-weight: bold;
+  font-size: var(--font-size-text);
+  line-height: 1.8rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+  text-decoration: none;
+  text-transform: var(--tab-button-text-transform, uppercase);
+  letter-spacing: var(--letter-spacing-bold);
+
+  border-bottom: 2px solid transparent;
+  outline-offset: -2px;
+  transition: color 0.2s, border 0.2s, scale 0.2s;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -10px 0;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color-primary);
+    outline-color: currentColor;
+  }
+
+  &:active:not(&--active) {
+    scale: 0.9;
+  }
+
+  &--active {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+    cursor: default;
+  }
+
+  &--active:focus-visible {
+    outline: var(--outline-static);
+  }
+
+  &:disabled {
+    color: var(--color-text-disabled);
+    cursor: default;
+  }
+}

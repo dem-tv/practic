@@ -1,0 +1,24 @@
+.period-button {
+  width: 100%;
+  padding: 15px var(--periodPadding);
+  font-size: var(--font-size-text);
+  line-height: var(--line-height-text);
+  color: var(--color-text-main);
+  text-align: left;
+  letter-spacing: var(--letter-spacing);
+  outline-offset: -2px;
+
+  @include only-mobile {
+    padding: var(--periodPadding) calc(var(--periodPadding) / 2) var(--periodPadding);
+    white-space: nowrap;
+  }
+
+  &--active,
+  &:hover {
+    background-color: var(--color-bg-hover);
+  }
+
+  &--active {
+    color: var(--color-primary);
+  }
+}

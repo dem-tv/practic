@@ -1,0 +1,8 @@
+/* Euclid Circular A - font-weight 400 - normal */
+@font-face {
+  font-display: swap;
+  font-family: "Euclid";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/fonts/EuclidCircularA-Regular.woff2") format("woff2");
+}

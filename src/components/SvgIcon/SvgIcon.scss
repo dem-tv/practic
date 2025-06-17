@@ -1,0 +1,12 @@
+.icon {
+  display: flex;
+  flex-shrink: 0;
+  width: var(--icon-size, 2.4rem);
+  height: var(--icon-size, 2.4rem);
+  // Примет значение свойства --icon-color, если оно определено, иначе унаследует currentColor
+  color: var(--icon-color, currentColor);
+  pointer-events: none;
+  outline: none;
+  // Примет цвет свойства color, если оно успешно рассчитано выше, иначе унаследует currentColor
+  fill: currentColor;
+}

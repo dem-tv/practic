@@ -1,0 +1,88 @@
+/* stylelint-disable */
+html {
+  box-sizing: border-box;
+  direction: ltr;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+:root {
+  font-family: var(--font-primary);
+  font-size: 62.5%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text-main);
+}
+
+body {
+  min-width: 320px;
+  font-weight: normal;
+  font-size: var(--font-size-text);
+  line-height: var(--line-height-text);
+  letter-spacing: var(--letter-spacing);
+  background-color: var(--color-bg);
+}
+
+button {
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  color: inherit;
+  padding: 0;
+}
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+input:disabled,
+textarea:disabled,
+input:disabled::placeholder,
+textarea:disabled::placeholder {
+  -webkit-text-fill-color: currentColor;
+  opacity: 1;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: inherit;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {  /* 1. sets text fill to current `color` for safari */
+  /* 2. correct opacity on iOS */
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Change Autocomplete styles in Chrome */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  font: inherit !important;
+  -webkit-text-fill-color: var(--color-text-main);
+  box-shadow: 0 0 0 1000px var(--color-light) inset;
+}
+
+*:focus-visible {
+  outline: var(--outline);
+}
+
+hr {
+  margin: 0;
+  border: 0;
+  height: 0;
+  overflow: visible;
+}

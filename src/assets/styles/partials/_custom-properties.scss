@@ -1,0 +1,66 @@
+:root {
+  /** Colors */
+  --color-light: #ffffff;
+  --color-dark: #000000;
+
+  --color-primary: #ed4d29;
+  --color-secondary: #fff8f5;
+
+  --color-primary-hover: #f17448;
+  --color-primary-hover-accent: #ffded4;
+
+  --color-bg: var(--color-light);
+  --color-bg-backdrop: #f3f4f6;
+  --color-bg-dropdown: #ffffff;
+  --color-bg-secondary: #fafafa;
+  --color-bg-hover: var(--color-secondary);
+  --color-bg-hover-accent: #ffded4;
+
+  --color-text-main: #0a0a0a;
+  --color-text-disabled: #d0d0d0;
+  --color-stroke: #dfe2eb;
+
+  --color-input-border: transparent;
+  --color-input-border-hover: #898989;
+  --color-input-bg: #f3f3f2;
+
+  --color-gray: #7b7e87;
+  --color-negative: #d31818;
+
+  /** Fonts */
+  --font-primary: "Euclid", "Arial", sans-serif;
+
+  --font-size-title: 2.4rem;
+  --font-size-subtitle: 2rem;
+  --font-size-text: 1.6rem;
+  --font-size-label: 1.4rem;
+  --font-size-icon: 2.4rem;
+
+  --line-height-title: 3rem;
+  --line-height-subtitle: 2.4rem;
+  --line-height-text: 2rem;
+  --line-height-label: 1.8rem;
+
+  /** Radius */
+  --radius-normal: 10px;
+
+  --radius-xs: 4px;
+  --radius-s: 6px;
+  --radius-m: 8px;
+  --radius-l: 10px;
+  --radius-xl: 12px;
+
+  /** Border */
+  --form-border: 1px;
+
+  --outline: 2px solid var(--color-text-main);
+  --outline-static: 2px dashed var(--color-text-secondary);
+
+  /** form-padding */
+  --padding-form-vertical: 15px;
+  --padding-form-horizontal: 20px;
+
+  --box-shadow-default: 0px 5px 20px 5px rgba(0, 0, 0, 0.15);
+
+  --input-padding-left: 15px;
+}

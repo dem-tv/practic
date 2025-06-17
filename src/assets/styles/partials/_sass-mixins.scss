@@ -1,0 +1,93 @@
+/** VIEWPORT WIDTH */
+
+@mixin base {
+  @media screen and (max-width: 359px) {
+    @content;
+  }
+}
+
+@mixin min-mobile {
+  @media screen and (min-width: 360px) {
+    @content;
+  }
+}
+
+@mixin min-tablet {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin min-laptop {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin min-desktop {
+  @media screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin min-desktop-xl {
+  @media screen and (min-width: 1600px) {
+    @content;
+  }
+}
+
+@mixin min-width($width) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin only-mobile {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin only-tablet {
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin max-tablet {
+  @media screen and (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin only-laptop {
+  @media screen and (min-width: 1024px) and (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin minmax-width($min-width, $max-width) {
+  @media screen and (min-width: $min-width) and (max-width: $max-width) {
+    @content;
+  }
+}
+
+@mixin max-width($max-width) {
+  @media screen and (max-width: $max-width) {
+    @content;
+  }
+}
+
+/** POINTER TYPE */
+
+@mixin touch {
+  @media screen and (hover: none) {
+    @content;
+  }
+}
+
+@mixin cursor {
+  @media screen and (hover: hover) {
+    @content;
+  }
+}

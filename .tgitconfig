@@ -1,0 +1,8 @@
+[bugtraq]
+	url = https://rdm.lwo.by/issues/%BUGID%
+	warnifnoissue = true
+	message = "refs #%BUGID% BUGID: %BUGID%"
+	append = true
+	label = Номер задачи
+	logregex = "(refs #(\\d+))|(BUGID: (\\d+))\n(\\d+)"
+	number = false

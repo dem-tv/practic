@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  web-rdm-reporter-front:
+    image: 836579323278859454698431277832/image_rdm_reporter_front:latest
+    container_name: web_rdm_reporter_front
+    tty: true
+    volumes:
+      #Рабочий каталог проекта
+      - .:/usr/src/app
+    working_dir: '/usr/src/app'
+    ports:
+      - 5181:5181

@@ -1,0 +1,17 @@
+.list-link-item {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  padding: 8px 24px;
+  color: var(--color-text-main);
+  text-decoration: none;
+  background-color: transparent;
+  transition: background-color 0.2s, color 0.2s;
+
+  &:hover,
+  &:focus-visible,
+  &--active {
+    color: var(--color-primary);
+    background-color: var(--color-bg-hover);
+  }
+}

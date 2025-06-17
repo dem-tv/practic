@@ -1,0 +1,89 @@
+.date-period {
+  display: block;
+}
+
+.period-dropdown {
+  --periodPadding: 20px;
+  --periodTimeGap: 10px;
+
+  display: flex;
+
+  @include only-mobile {
+    --periodPadding: 16px;
+
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__block {
+    position: relative;
+    padding: var(--periodPadding) 0;
+
+    @include only-mobile {
+      padding-top: 0;
+    }
+  }
+
+  &__block--menu {
+    width: 152px;
+
+    @include only-mobile {
+      width: 100%;
+      padding-bottom: 0;
+      overflow: auto;
+    }
+  }
+
+  &__block + &__block::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: var(--periodPadding);
+    bottom: var(--periodPadding);
+    left: 0;
+    border-left: 1px solid var(--color-stroke);
+
+    @include only-mobile {
+      position: static;
+      display: block;
+      width: calc(100% - var(--periodPadding) * 2);
+      margin: 0 0 0 var(--periodPadding);
+      border-bottom: 1px solid var(--color-stroke);
+      border-left: none;
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @include only-mobile {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__date {
+    padding: 0 var(--periodPadding);
+
+    @include only-mobile {
+      padding-top: 0;
+    }
+  }
+
+  &__time {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--periodTimeGap);
+    margin-top: var(--periodPadding);
+  }
+
+  &__submit {
+    margin-top: var(--periodPadding);
+  }
+
+  &__submit-button {
+    width: 100%;
+  }
+}

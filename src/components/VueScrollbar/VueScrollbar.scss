@@ -1,0 +1,29 @@
+
+.ps {
+  position: relative;
+
+  // Стили для списком с огромным количеством элементов, чтобы thumb не был слишком маленьким
+  &__thumb-x,
+  &__thumb-y {
+    display: flex;
+    align-items: center;
+  }
+
+  &__thumb-x::before,
+  &__thumb-y::before {
+    content: "";
+    position: absolute;
+  }
+
+  &__thumb-x::before {
+    top: 0;
+    bottom: 0;
+    min-width: 12px;
+  }
+
+  &__thumb-y::before {
+    right: 0;
+    left: 0;
+    min-height: 12px;
+  }
+}

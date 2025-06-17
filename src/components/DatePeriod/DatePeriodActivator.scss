@@ -1,0 +1,90 @@
+.period-activator {
+  --border-color: var(--color-stroke);
+  --border-color-hover: var(--color-input-hover);
+  --border-color-focus: var(--color-primary);
+  --icon-color: var(--color-primary);
+  --placeholder-color: var(--color-text-main);
+
+  outline: transparent;
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+    padding-inline: 16px 10px;
+    background-color: var(--color-input-bg);
+    border: 1px solid var(--color-input-border);
+    border-radius: var(--radius-m);
+
+    transition: 0.2s;
+    cursor: pointer;
+  }
+
+  &:hover &__wrapper,
+  &--active &__wrapper {
+    border-color: var(--color-input-border-hover);
+  }
+
+  &:focus-visible &__wrapper {
+    border-color: var(--color-input-border-hover);
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: normal;
+    font-size: var(--font-size-text);
+    line-height: var(--line-height-text);
+    color: var(--color-text-main);
+  }
+
+  &__placeholder {
+    margin: 0;
+    font-size: var(--font-size-text);
+    line-height: var(--line-height-text);
+    color: var(--placeholder-color);
+    transition: 0.2s;
+    cursor: pointer;
+  }
+
+  &__icon {
+    font-size: var(--font-size-icon);
+    color: var(--icon-color);
+  }
+
+  &:hover {
+    border-color: var(--border-color-hover);
+  }
+
+  &__icon--disabled {
+    --icon-color: var(--color-primary-disabled);
+
+    pointer-events: none;
+    border-color: var(--border-color-focus);
+    outline: none;
+  }
+
+  &--disabled {
+    --border-color: var(--color-text-disabled);
+    --border-color-focus: var(--color-text-disabled);
+    --icon-color: var(--color-primary-disabled);
+    --placeholder-color: var(--color-text-disabled);
+
+    pointer-events: none;
+    background-color: var(--color-bg-secondary);
+  }
+
+  &--disabled &__placeholder {
+    pointer-events: none;
+  }
+
+  &__field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 var(--padding-form-horizontal) 0 var(--input-padding-left);
+  }
+}

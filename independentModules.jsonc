@@ -1,0 +1,117 @@
+{
+  "debugMode": true,
+  "pathAliases": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "modules": [
+    {
+      "name": "Types",
+      "pattern": "src/types/*",
+      "errorMessage": "🔥 TypeScript type modules can only import other types. 🔥",
+      "allowImportsFrom": ["src/types/*"]
+    },
+    {
+      "name": "Constants",
+      "pattern": "src/constants/*",
+      "allowImportsFrom": ["src/types/*", "src/constants/*"],
+      "errorMessage": "🔥 Constants can only import other constants and types. 🔥"
+    },
+    {
+      "name": "Utils",
+      "pattern": "src/utils/*",
+      "allowImportsFrom": ["src/types/*", "src/constants/*", "src/utils/*"],
+      "errorMessage": "🔥 Utility functions can import other utilities, constants, and types. 🔥"
+    },
+    {
+      "name": "Stores",
+      "pattern": "src/stores/*",
+      "allowImportsFrom": [
+        "src/types/*",
+        "src/constants/*",
+        "src/utils/*",
+        "src/stores/*"
+      ],
+      "errorMessage": "🔥 Storage modules can import code from lower layers (constants, types, utilities). 🔥"
+    },
+    {
+      "name": "Api",
+      "pattern": "src/api/**",
+      "allowImportsFrom": [
+        "src/types/*",
+        "src/constants/*",
+        "src/utils/*",
+        "src/api/**"
+      ],
+      "errorMessage": "🔥 Api modules can import code from lower layers (constants, types, utilities), except for stores. 🔥"
+    },
+    {
+      "name": "Composables",
+      "pattern": "src/composables/*",
+      "allowImportsFrom": [
+        "src/types/*",
+        "src/constants/*",
+        "src/utils/*",
+        "src/stores/*",
+        "src/api/**",
+        "src/composables/*"
+      ],
+      "errorMessage": "🔥 Composite functions can import code from modules of the same layer, as well as from lower layers. 🔥"
+    },
+    {
+      "name": "Components",
+      "pattern": "src/components/!(The)*/*",
+      "allowImportsFrom": [
+        "src/types/*",
+        "src/constants/*",
+        "src/utils/*",
+        "src/composables/*",
+        "src/components/!(The)*/*"
+      ],
+      "errorMessage": "🔥 components must not contain imports of views, smart components, and must not use global states. 🔥"
+    },
+    {
+      "name": "Smart components",
+      "pattern": "src/components/The*/*",
+      "allowImportsFrom": [
+        "src/types/*",
+        "src/constants/*",
+        "src/utils/*",
+        "src/composables/*",
+        "src/stores/*",
+        "src/api/**",
+        "src/components/The*/*",
+        "src/components/!(The)*/*"
+      ],
+      "errorMessage": "🔥 Smart components (unique components with the prefix The) can import everything except views, and can use global states. 🔥"
+    },
+    {
+      "name": "Views",
+      "pattern": "src/views/*/*.vue",
+      "allowImportsFrom": [
+        "src/types/*",
+        "src/constants/*",
+        "src/utils/*",
+        "src/composables/*",
+        "src/stores/*",
+        "src/api/**",
+        "src/components/!(The)*/*",
+        "src/components/The*/*",
+        "src/views/*/*.ts"
+      ],
+      "errorMessage": "🔥 Views (pages) can import code from modules of all underlying layers, use global states (api, stores, site routines and others). 🔥"
+    },
+    {
+      "name": "Routers",
+      "pattern": "src/router/*/*",
+      "allowImportsFrom": [
+        "src/views/**/*.vue",
+        "src/constants/*",
+        "src/types/*"
+      ],
+      "errorMessage": "🔥 The application routes customization modules are limited to importing views, types and constants. 🔥"
+    }
+  ]
+}

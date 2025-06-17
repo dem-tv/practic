@@ -1,0 +1,23 @@
+.labeled-field {
+  position: relative;
+
+  &__label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: normal;
+    font-size: var(--font-size-text);
+    line-height: var(--line-height-text);
+    color: var(--color-text-main);
+
+    @include min-laptop {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__label--required {
+    &::after {
+      content: "*";
+      color: var(--color-negative);
+    }
+  }
+}

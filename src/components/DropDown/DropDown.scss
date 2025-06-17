@@ -1,0 +1,15 @@
+.dropdown {
+  position: relative;
+
+  &__inner {
+    position: absolute;
+    z-index: 15;
+    bottom: -10px;
+    max-width: 100%;
+    overflow: hidden;
+    background: var(--color-bg);
+    border-radius: var(--radius-l);
+    box-shadow: var(--box-shadow-default);
+    transform: translateY(100%);
+  }
+}

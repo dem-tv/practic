@@ -1,0 +1,65 @@
+.field {
+  &__icon-button {
+    height: 100%;
+    padding: 0;
+  }
+
+  &__icon-reset {
+    --icon-color: var(--color-primary);
+  }
+
+  &__input {
+    width: 100%;
+    min-height: 100%;
+    padding: 0 0 0 var(--input-padding-left);
+    font-weight: bold;
+    font-size: var(--input-font-size);
+    line-height: var(--line-height-text);
+    color: var(--color-text-main);
+    text-overflow: ellipsis;
+    letter-spacing: var(--letter-spacing-bold);
+    background-color: transparent;
+    border: none;
+    border-radius: inherit;
+    outline: none;
+  }
+
+  &__input::placeholder {
+    font-weight: normal;
+  }
+
+  &__input:focus {
+    outline: none;
+  }
+
+  &__input:disabled {
+    color: var(--color-text-secondary);
+  }
+
+  &__input--time {
+    opacity: 0;
+    transition: opacity 0.1s;
+  }
+
+  &__input--time::-webkit-datetime-edit-hour-field,
+  &__input--time::-webkit-datetime-edit-minute-field {
+    display: inline-block;
+    color: var(--color-text-main);
+  }
+
+  &__input--time::-webkit-datetime-edit-hour-field:focus,
+  &__input--time::-webkit-datetime-edit-minute-field:focus {
+    color: var(--color-primary);
+    background-color: var(--color-bg-hover);
+  }
+
+  &__input--time::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+
+  &__input--time:focus-visible,
+  &__input--time-filled {
+    opacity: 1;
+    transition: opacity 0.1s;
+  }
+}

@@ -1,0 +1,29 @@
+.tab-list {
+  position: relative;
+  display: flex;
+  flex: 0;
+  gap: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  width: fit-content;
+  min-height: min(40px, 100%);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &--secondary {
+    --tab-item-flex: 0;
+    --tab-button-text-transform: none;
+
+    gap: 20px;
+  }
+
+  &--secondary::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    width: 100%;
+    border-bottom: 1px solid var(--color-stroke);
+  }
+}

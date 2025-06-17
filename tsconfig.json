@@ -1,0 +1,23 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.json",
+  "include": [
+    "vite.config.*",
+    "src/components.d.ts",
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.vue",
+    "plugins/*",
+    ".eslintrc.js"
+  ],
+  "exclude": ["src/**/__tests__/*"],
+  "compilerOptions": {
+    "composite": true,
+    "types": ["node", "vitest", "vitest/globals"],
+    "noImplicitAny": false,
+    "lib": ["ES2024", "ESNext.Collection", "DOM", "DOM.Iterable"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}

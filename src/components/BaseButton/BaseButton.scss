@@ -1,0 +1,83 @@
+.button {
+  --icon-size: var(--font-size-icon);
+  --icon-color: var(--color-light);
+
+  position: relative;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+
+  width: fit-content;
+  min-height: 44px;
+  padding: var(--padding-form-vertical) var(--padding-form-horizontal);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-text);
+  line-height: var(--line-height-text);
+  color: var(--color-primary);
+  text-decoration: none;
+  text-wrap: nowrap;
+  background-color: var(--color-light);
+  border: var(--form-border) solid var(--color-primary);
+  border-radius: var(--radius-s);
+  outline-offset: -2px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: unset;
+  }
+
+  &:focus-visible,
+  &:hover {
+    background-color: var(--color-primary-hover-accent);
+  }
+
+  &--fluid {
+    width: 100%;
+  }
+
+  &--loading {
+    --icon-color: transparent;
+
+    color: rgba(0, 0, 0, 0);
+    cursor: default;
+  }
+
+  &--loading::before,
+  &--loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1em;
+    height: 1em;
+    margin: -0.5em 0 0 -0.5em;
+    border-color: var(--color-loading) transparent transparent;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 100%;
+    animation-name: spinning;
+    animation-duration: 2.4s;
+    animation-iteration-count: infinite;
+  }
+
+  &--loading::before {
+    animation-timing-function: cubic-bezier(0.41, 0.26, 0.2, 0.62);
+  }
+
+  &--loading::after {
+    animation-timing-function: cubic-bezier(0.51, 0.09, 0.21, 0.8);
+  }
+
+  &::selection {
+    color: rgba(0, 0, 0, 0);
+  }
+
+  &--loading:disabled,
+  &--loading.button--secondary {
+    --color-loading: var(--color-dark);
+
+    color: rgba(0, 0, 0, 0);
+  }
+}

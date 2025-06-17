@@ -11,13 +11,11 @@ import { exampleList } from '@/constants/example.ts';
 
 type FromModel = {
   period: DateModel;
-  groups: User | null;
   employee: User[];
 };
 
 const formModel = ref<FromModel>({
   period: null,
-  groups: null,
   employee: [],
 });
 
@@ -29,26 +27,17 @@ function onSubmit() {
 <template>
   <TitledContent
     :link-to-back="{ name: ROUTE_NAME_MAIN }"
-    title="Трудозатраты"
+    title="Трудозатраты отдела дизайна"
   >
     <BaseForm>
       <DatePeriod
         v-model="formModel.period"
-        required
         :format-date="DATE_FNS_FORMAT_ISO_WITH_TIMEZONE"
         :format-dayjs="DATE_FORMAT_ISO_WITH_TIMEZONE"
         label="Период"
         placeholder="Выберите период"
         name="date"
       />
-      <FieldWrapper label="Группы сотрудников">
-        <BaseSelect
-          v-model="formModel.groups"
-          :options="exampleList"
-          track-by="id"
-          label="name"
-        />
-      </FieldWrapper>
       <FieldWrapper label="Сотрудник">
         <BaseSelect
           v-model="formModel.employee"

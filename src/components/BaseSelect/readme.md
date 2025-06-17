@@ -1,0 +1,1 @@
+Взято из https://github.com/shentao/vue-multiselect/tree/master/src

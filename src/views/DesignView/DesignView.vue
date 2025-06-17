@@ -9,6 +9,10 @@ import { ROUTE_NAME_MAIN } from '@/constants/routeNames';
 import type { User } from '@/types/example.types.ts';
 import { exampleList } from '@/constants/example.ts';
 
+const LABEL_PERIOD = "Период";
+const LABEL_EMPLOYEE = "Сотрудник";
+const LABEL_NAME = "name";
+
 type FromModel = {
   period: DateModel;
   employee: User[];
@@ -35,18 +39,18 @@ function onSubmit() {
         required
         :format-date="DATE_FNS_FORMAT_ISO_WITH_TIMEZONE"
         :format-dayjs="DATE_FORMAT_ISO_WITH_TIMEZONE"
-        label="Период"
+        :label="LABEL_PERIOD"
         placeholder="Выберите период"
         name="date"
       />
-      <FieldWrapper label="Сотрудник">
+      <FieldWrapper :label="LABEL_EMPLOYEE">
         <BaseSelect
           v-model="formModel.employee"
           required
           multiple
           :options="exampleList"
           track-by="id"
-          label="name"
+          :label="LABEL_NAME"
         />
       </FieldWrapper>
       <HorizontalList>

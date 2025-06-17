@@ -9,6 +9,9 @@ import {
 import { exampleList } from '@/constants/example.ts';
 import { ROUTE_NAME_MAIN } from '@/constants/routeNames';
 
+const LABEL_PERIOD="Период"
+const LABEL_GROUPS="Группы сотрудников"
+
 type FromModel = {
   period: DateModel;
   groups: User | null;
@@ -35,11 +38,11 @@ function onSubmit() {
         required
         :format-date="DATE_FNS_FORMAT_ISO_WITH_TIMEZONE"
         :format-dayjs="DATE_FORMAT_ISO_WITH_TIMEZONE"
-        label="Период"
+        :label="LABEL_PERIOD"
         placeholder="Выберите период"
         name="date"
       />
-      <FieldWrapper label="Группы сотрудников">
+      <FieldWrapper :label="LABEL_GROUPS">
         <BaseSelect
           v-model="formModel.groups"
           required

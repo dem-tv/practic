@@ -7,6 +7,8 @@ import {
 } from '@/constants/dates';
 import { ROUTE_NAME_MAIN } from '@/constants/routeNames';
 
+const LABEL_PERIOD = "Период";
+
 type FromModel = {
   period: DateModel;
 };
@@ -31,7 +33,7 @@ function onSubmit() {
         required
         :format-date="DATE_FNS_FORMAT_ISO_WITH_TIMEZONE"
         :format-dayjs="DATE_FORMAT_ISO_WITH_TIMEZONE"
-        label="Период"
+        :label="LABEL_PERIOD"
         placeholder="Выберите период"
         name="date"
       />

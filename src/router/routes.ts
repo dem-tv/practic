@@ -4,6 +4,7 @@ import {
   ROUTE_NAME_ACCOUNTING,
   ROUTE_NAME_LABOR_COSTS,
   ROUTE_NAME_LABOR_COSTS_DEPARTMENT,
+  ROUTE_NAME_LABOR_COSTS_PROJECT,
   ROUTE_NAME_MAIN,
   ROUTE_NAME_QMS,
   ROUTE_NAME_SUPPORT,
@@ -15,6 +16,7 @@ const GMSView = () => import('@/views/GMSView/GMSView.vue');
 const SupportView = () => import('@/views/SupportView/SupportView.vue');
 const LaborView = () => import('@/views/LaborView/LaborView.vue');
 const DepartmentView = () => import('@/views/DepartmentView/DepartmentView.vue');
+const ProjectView = () => import('@/views/ProjectView/ProjectView.vue');
 export const routes: Readonly<RouteRecordRaw[]> = [
   {
     path: '/',
@@ -50,6 +52,11 @@ export const routes: Readonly<RouteRecordRaw[]> = [
     path: '/department',
     name: ROUTE_NAME_LABOR_COSTS_DEPARTMENT,
     component: DepartmentView,
+  },
+   {
+    path: '/projects',
+    name: ROUTE_NAME_LABOR_COSTS_PROJECT,
+    component: ProjectView,
   },
   {
     path: '/:pathMatch(.*)*',

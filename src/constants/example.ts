@@ -4,3 +4,9 @@ export const exampleList = [
 
   { id: 3, name: 'Charlie', age: 35 },
 ];
+
+export const statusList = [
+  {  name: 'Ready' },
+  {  name: 'Failure' },
+  {  name: 'Error' },
+  ];

@@ -23,12 +23,14 @@ type FromModel = {
   period: DateModel;
   groups: User | null;
   employee: User[];
+  tasks: boolean;
 };
 
 const formModel = ref<FromModel>({
   period: null,
   groups: null,
   employee: [],
+  tasks: false,
 });
 
 const validationRules = computed(() => ({
@@ -53,6 +55,10 @@ const validationRules = computed(() => ({
           !formModel.value.groups || (!formModel.value.employee.length && !formModel.value.groups),
       ),
     ),
+  },
+  tasks: {
+    required: helpers.withMessage("Галочка не поставленa", 
+    requiredIf(() => !formModel.value.tasks)),
   },
 }));
 
@@ -117,13 +123,18 @@ async function onPrepare() {
           label="name"
         />
       </FieldWrapper>
-      <FieldWrapper>
+      <BaseFieldset
+        :error-message="formValidation.tasks.errorMessage"
+        :error="formValidation.tasks.invalid"
+        :required="formValidation.tasks.required"
+      >
         <OptionControl
-        label ="Задачи с оценкой на ошибки"
-        inputType="checkbox"
-        labelPosition = "right"
-        ></OptionControl>
-      </FieldWrapper>
+          v-model:checked="formModel.tasks"
+          label ="Задачи с оценкой на ошибки"
+          inputType="checkbox"
+          labelPosition = "right"
+        />
+      </BaseFieldset>
       <HorizontalList>
         <BaseButton @click="onShow"> Посмотреть </BaseButton>
         <BaseButton @click="onPrepare"> Подготовить к загрузке </BaseButton>

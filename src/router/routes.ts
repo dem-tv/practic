@@ -4,6 +4,10 @@ import {
   ROUTE_NAME_ACCOUNTING,
   ROUTE_NAME_LABOR_COSTS,
   ROUTE_NAME_LABOR_COSTS_DEPARTMENT,
+  ROUTE_NAME_INTERNAL_TEST_ANALYSIS,
+  ROUTE_NAME_TEST_ANALYSIS,
+  ROUTE_NAME_APPLICATIONS_PERFORMANCE_EVALUATION,
+  ROUTE_NAME_EFFECTIVENESS_PROCESS,
   ROUTE_NAME_MAIN,
   ROUTE_NAME_QMS,
   ROUTE_NAME_SUPPORT,
@@ -14,13 +18,27 @@ import {
 
 const MainView = () => import('@/views/MainView/MainView.vue');
 const AccountingView = () => import('@/views/AccountingView/AccountingView.vue');
+
 const GMSView = () => import('@/views/GMSView/GMSView.vue');
 const SupportView = () => import('@/views/SupportView/SupportView.vue');
 const LaborView = () => import('@/views/LaborView/LaborView.vue');
+
+// Трудозатраты
 const DepartmentView = () => import('@/views/DepartmentView/DepartmentView.vue');
+
+// Бухгалтерия
 const ProjectListViw = () => import('@/views/ProjectListView/ProjectListView.vue');
 const Accounting2View = () => import('@/views/Accounting2View/Accounting2View.vue');
 const AccountingByDepartmentsView = () => import('@/views/AccountingByDepartmentsView/AccountingByDepartmentsView.vue');
+
+// СМК
+const InternalTestView = () => import('@/views/InternalTestView/InternalTestView.vue');
+const TestAnalysisView = () => import('@/views/TestAnalysisView/TestAnalysisView.vue');
+const PerformanceEvaluationView = () => import('@/views/PerformanceEvaluationView/PerformanceEvaluationView.vue');
+const EffectivenessProcessView = () => import('@/views/EffectivenessProcessView/EffectivenessProcessView.vue');
+
+
+
 export const routes: Readonly<RouteRecordRaw[]> = [
   {
     path: '/',
@@ -52,11 +70,13 @@ export const routes: Readonly<RouteRecordRaw[]> = [
       },
     ],
   },
+  // Трудозатраты
   {
     path: '/department',
     name: ROUTE_NAME_LABOR_COSTS_DEPARTMENT,
     component: DepartmentView,
   },
+  // Бухгалтерия
   {
     path: '/project-list',
     name: ROUTE_NAME_ACCOUNTING_PROJECT_LIST,
@@ -71,6 +91,29 @@ export const routes: Readonly<RouteRecordRaw[]> = [
     path: '/accounting-by-departments',
     name: ROUTE_NAME_ACCOUNTING_BY_DEPARTMENTS,
     component: AccountingByDepartmentsView,
+  },
+
+
+  // СМК
+  {
+    path: '/internal-test-analysis',
+    name: ROUTE_NAME_INTERNAL_TEST_ANALYSIS,
+    component: InternalTestView,
+  },
+  {
+    path: '/test-analysis',
+    name: ROUTE_NAME_TEST_ANALYSIS,
+    component: TestAnalysisView,
+  },
+  {
+    path: '/applications-performance-evaluation',
+    name: ROUTE_NAME_APPLICATIONS_PERFORMANCE_EVALUATION,
+    component: PerformanceEvaluationView,
+  },
+  {
+    path: '/effectiveness-process-support',
+    name: ROUTE_NAME_EFFECTIVENESS_PROCESS,
+    component: EffectivenessProcessView,
   },
   {
     path: '/:pathMatch(.*)*',

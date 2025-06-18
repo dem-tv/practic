@@ -34,6 +34,7 @@ declare module 'vue' {
     TabButton: typeof import('./components/TabButton/TabButton.vue')['default']
     TabList: typeof import('./components/TabList/TabList.vue')['default']
     TabListItem: typeof import('./components/TabList/TabListItem.vue')['default']
+    TheTitledContent: typeof import('./components/TheTitledContent/TheTitledContent.vue')['default']
     TitledContent: typeof import('./components/TitledContent/TitledContent.vue')['default']
     VerticalList: typeof import('./components/VerticalList/VerticalList.vue')['default']
     VueScrollbar: typeof import('./components/VueScrollbar/VueScrollbar.vue')['default']

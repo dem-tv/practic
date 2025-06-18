@@ -1,17 +1,22 @@
 <script setup lang="ts">
+import { helpers, required, requiredIf } from '@vuelidate/validators';
+
+import { getMessageRequired, getMessageRequiredIf } from '@/utils/getMessage';
+
 import type { DateModel } from '@/types/datePeriod.types';
+import type { User } from '@/types/example.types';
 
 import {
   DATE_FNS_FORMAT_ISO_WITH_TIMEZONE,
   DATE_FORMAT_ISO_WITH_TIMEZONE,
 } from '@/constants/dates';
+import { exampleList } from '@/constants/example';
 import { ROUTE_NAME_MAIN } from '@/constants/routeNames';
-import type { User } from '@/types/example.types.ts';
-import { exampleList } from '@/constants/example.ts';
+
+import { useValidation } from '@/composable/useValidation';
 
 const LABEL_PERIOD = "Период";
 const LABEL_EMPLOYEE = "Сотрудник";
-const LABEL_NAME = "name";
 
 type FromModel = {
   period: DateModel;
@@ -23,7 +28,28 @@ const formModel = ref<FromModel>({
   employee: [],
 });
 
-function onSubmit() {
+const validationRules = computed(() => ({
+  period: {
+    required: helpers.withMessage(getMessageRequired(LABEL_PERIOD), required),
+  },
+  employee: {
+    required: helpers.withMessage(getMessageRequired(LABEL_EMPLOYEE), required),
+  },
+}));
+
+const { formValidation, validateForm } = useValidation(formModel, validationRules);
+
+async function onShow() {
+  const isValid = await validateForm();
+  if (!isValid) return;
+
+  console.log(formModel.value);
+}
+
+async function onPrepare() {
+  const isValid = await validateForm();
+  if (!isValid) return;
+
   console.log(formModel.value);
 }
 </script>
@@ -36,26 +62,32 @@ function onSubmit() {
     <BaseForm>
       <DatePeriod
         v-model="formModel.period"
-        required
         :format-date="DATE_FNS_FORMAT_ISO_WITH_TIMEZONE"
         :format-dayjs="DATE_FORMAT_ISO_WITH_TIMEZONE"
         :label="LABEL_PERIOD"
+        :error-message="formValidation.period.errorMessage"
+        :error="formValidation.period.invalid"
+        :required="formValidation.period.required"
         placeholder="Выберите период"
         name="date"
       />
-      <FieldWrapper :label="LABEL_EMPLOYEE">
+      <FieldWrapper 
+      :label="LABEL_EMPLOYEE"
+      :error-message="formValidation.employee.errorMessage"
+      :error="formValidation.employee.invalid"
+      :required="formValidation.employee.required"
+      >
         <BaseSelect
           v-model="formModel.employee"
-          required
           multiple
           :options="exampleList"
           track-by="id"
-          :label="LABEL_NAME"
+          label="name"
         />
       </FieldWrapper>
       <HorizontalList>
-        <BaseButton>Посмотреть</BaseButton>
-        <BaseButton>Подготовить к загрузке</BaseButton>
+        <BaseButton @click="onShow">Посмотреть</BaseButton>
+        <BaseButton @click="onPrepare">Подготовить к загрузке</BaseButton>
       </HorizontalList>
     </BaseForm>
   </TitledContent>

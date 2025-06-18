@@ -19,8 +19,10 @@ const GMSView = () => import('@/views/GMSView/GMSView.vue');
 const SupportView = () => import('@/views/SupportView/SupportView.vue');
 const LaborView = () => import('@/views/LaborView/LaborView.vue');
 const DepartmentView = () => import('@/views/DepartmentView/DepartmentView.vue');
-
-
+const InternalTestView = () => import('@/views/InternalTestView/InternalTestView.vue');
+const TestAnalysisView = () => import('@/views/TestAnalysisView/TestAnalysisView.vue');
+const PerformanceEvaluationView = () => import('@/views/PerformanceEvaluationView/PerformanceEvaluationView.vue');
+const EffectivenessProcessView = () => import('@/views/EffectivenessProcessView/EffectivenessProcessView.vue');
 
 export const routes: Readonly<RouteRecordRaw[]> = [
   {
@@ -61,22 +63,22 @@ export const routes: Readonly<RouteRecordRaw[]> = [
   {
     path: '/internal-test-analysis',
     name: ROUTE_NAME_INTERNAL_TEST_ANALYSIS,
-    component: DepartmentView,
+    component: InternalTestView,
   },
   {
     path: '/test-analysis',
     name: ROUTE_NAME_TEST_ANALYSIS,
-    component: DepartmentView,
+    component: TestAnalysisView,
   },
   {
     path: '/applications-performance-evaluation',
     name: ROUTE_NAME_APPLICATIONS_PERFORMANCE_EVALUATION,
-    component: DepartmentView,
+    component: PerformanceEvaluationView,
   },
   {
     path: '/effectiveness-process-support',
     name: ROUTE_NAME_EFFECTIVENESS_PROCESS,
-    component: DepartmentView,
+    component: EffectivenessProcessView,
   },
   {
     path: '/:pathMatch(.*)*',

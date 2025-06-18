@@ -58,15 +58,6 @@ onUnmounted(() => {
         <slot name="dropdown" />
       </div>
     </transition>
-    <transition
-      name="fade"
-      mode="out-in"
-    >
-      <div
-        v-if="props.show"
-        class="modal-mobile-background"
-      ></div>
-    </transition>
   </div>
 </template>
 

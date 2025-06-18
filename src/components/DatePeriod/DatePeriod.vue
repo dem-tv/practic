@@ -155,7 +155,7 @@ const emit = defineEmits<{
   'update:modelValue': [value: DateModel];
 }>();
 
-const CHIP_CLOSE_BTN_SELECTOR = '.select-chips__chips-button--clickable';
+const CHIP_CLOSE_BTN_SELECTOR = '.chip__reset';
 const periodData = ref<DateWithPeriodId>({
   value: null,
   id: OTHER_PERIOD_ID,

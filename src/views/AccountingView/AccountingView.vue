@@ -1,3 +1,31 @@
+<script setup lang="ts">
+import type { NavItem } from '@/types/navigation.types';
+
+import { ROUTE_NAME_ACCOUNTING_PROJECT_LIST, ROUTE_NAME_ACCOUNTING_2, ROUTE_NAME_ACCOUNTING_BY_DEPARTMENTS} from '@/constants/routeNames';
+
+const LIST_NAVIGATION: NavItem[] = [
+  {
+    title: 'Список проектов',
+    to: { name: ROUTE_NAME_ACCOUNTING_PROJECT_LIST },
+  },
+   {
+    title: 'Трудозатраты для бухгалтерии',
+    to: { name: ROUTE_NAME_ACCOUNTING_2 },
+  },
+   {
+    title: 'Трудозатраты для бухгалтерии в разрезе подразделений',
+    to: { name: ROUTE_NAME_ACCOUNTING_BY_DEPARTMENTS },
+  },
+];
+</script>
+
 <template>
-  <p>AccountingView</p>
+  <VerticalList
+    :items="LIST_NAVIGATION"
+    key-field="title"
+  >
+    <template #item="{ item }">
+      <ListLinkItem :to="item.to">{{ item.title }}</ListLinkItem>
+    </template>
+  </VerticalList>
 </template>

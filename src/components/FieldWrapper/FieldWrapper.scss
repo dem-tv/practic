@@ -37,13 +37,11 @@
   }
 
   &--error &__field {
-    background: var(--color-negative-background);
     border-color: var(--color-negative);
     box-shadow: var(--shadow-error);
   }
 
   &--error &__field:focus-within {
-    background: var(--color-light);
     border-color: var(--color-negative);
     box-shadow: var(--shadow-default);
   }
@@ -83,7 +81,7 @@
     transition: color 0.2s ease;
   }
 
-  &--error &__hint {
+  &--error &__error-text {
     color: var(--color-negative);
   }
 
@@ -125,13 +123,13 @@
   }
 
   &__icon--prepend {
-    position: absolute;
+    --icon-size: 2.4rem;
 
+    position: absolute;
     top: 50%;
     left: var(--padding-horisontal);
     padding: 0;
     transform: translateY(-50%);
-    --icon-size: 2.4rem;
   }
 
   &--append {

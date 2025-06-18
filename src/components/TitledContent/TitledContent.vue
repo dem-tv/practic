@@ -28,7 +28,7 @@ const props = defineProps({
       type="button"
     >
       <SvgIcon name="arrow" />
-      Back
+      Назад
     </StringButton>
     <BaseTitle uppercase>
       {{ props.title }}

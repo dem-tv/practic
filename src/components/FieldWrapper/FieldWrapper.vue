@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { PropType } from 'vue';
 import { useTemplateRef } from 'vue';
 
 const props = defineProps({
@@ -60,6 +59,14 @@ const props = defineProps({
   },
 
   /**
+   * Описание или подсказка, размещается внизу компонента.
+   */
+  hint: {
+    type: String,
+    default: '',
+  },
+
+  /**
    * Добавляет звездочку для пометки обязательности.
    */
   required: {
@@ -88,6 +95,8 @@ const slots = useSlots();
 
 const hasAppendSlots = computed(() => Boolean(slots?.appendIcon));
 const hasPrependSlots = computed(() => Boolean(slots?.prependIcon));
+const hasErrorMessage = computed(() => props.errorMessage || slots.errorMessage);
+const hasHint = computed(() => props.hint || slots.hint);
 
 const classes = computed(() => ({
   'field-wrapper--disabled': props.disabled,
@@ -131,7 +140,7 @@ defineExpose({
       >
         <div
           v-if="hasPrependSlots"
-          class="field-wrapper__icon field-wrapper__icon--prepend"
+          class="field-wrapper__icon--prepend"
         >
           <slot name="prependIcon" />
         </div>
@@ -144,11 +153,24 @@ defineExpose({
         </div>
       </div>
     </slot>
+    <slot name="hint"> </slot>
     <p
-      v-if="props.errorMessage && props.error"
+      v-if="hasHint"
       class="field-wrapper__hint"
     >
-      {{ props.errorMessage }}
+      <slot name="hint">
+        {{ props.hint }}
+      </slot>
+    </p>
+    <p
+      v-if="hasErrorMessage"
+      class="field-wrapper__hint"
+    >
+      <slot name="errorMessage">
+        <span class="field-wrapper__error-text">
+          {{ props.errorMessage }}
+        </span>
+      </slot>
     </p>
   </div>
 </template>

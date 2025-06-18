@@ -20,6 +20,8 @@ const SupportView = () => import('@/views/SupportView/SupportView.vue');
 const LaborView = () => import('@/views/LaborView/LaborView.vue');
 const DepartmentView = () => import('@/views/DepartmentView/DepartmentView.vue');
 
+
+
 export const routes: Readonly<RouteRecordRaw[]> = [
   {
     path: '/',

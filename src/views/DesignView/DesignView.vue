@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { helpers, required, requiredIf } from '@vuelidate/validators';
+import { helpers, required } from '@vuelidate/validators';
 
-import { getMessageRequired, getMessageRequiredIf } from '@/utils/getMessage';
+import { getMessageRequired } from '@/utils/getMessage';
 
 import type { DateModel } from '@/types/datePeriod.types';
 import type { User } from '@/types/example.types';

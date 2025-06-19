@@ -4,3 +4,8 @@ export const exampleList = [
 
   { id: 3, name: 'Charlie', age: 35 },
 ];
+
+export const projectsList = [
+  { id: 1, name: 'Кредитные программы' },
+  { id: 2, name: 'Цифровизация услуг' },
+];

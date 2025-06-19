@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { helpers, required, requiredIf } from '@vuelidate/validators';
 
-import { getMessageRequired, getMessageRequiredIf } from '@/utils/getMessage';
+import { getMessageRequired } from '@/utils/getMessage';
 
 import type { DateModel } from '@/types/datePeriod.types';
 
@@ -62,7 +62,7 @@ async function onPrepare() {
 <template>
   <TitledContent
     :link-to-back="{ name: ROUTE_NAME_MAIN }"
-    title="Трудозатраты"
+    title="Анализ тестирования"
   >
     <BaseForm>
       <DatePeriod

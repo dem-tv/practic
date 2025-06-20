@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { helpers, required, requiredIf } from '@vuelidate/validators';
+import { helpers, required } from '@vuelidate/validators';
 
 import { getMessageRequired } from '@/utils/getMessage';
 
@@ -44,17 +44,17 @@ const validationRules = computed(() => ({
     required: helpers.withMessage(getMessageRequired(LABEL_PERIOD), required),
   },
   projects:{
-     required: helpers.withMessage(getMessageRequired(LABEL_PROJECTS), required),
+    required: helpers.withMessage(getMessageRequired(LABEL_PROJECTS), required),
   },
-  requestType: { 
-    required: helpers.withMessage(
-      ERROR_MESSAGE,
-      requiredIf(
-        () =>
-          !formModel.value.requestType.func && !formModel.value.requestType.support,
-      ),
-    ),
-  }
+  requestType: {
+    required: 
+      helpers.withMessage(
+        ERROR_MESSAGE,
+        () => {
+          return (!!formModel.value.requestType.func || !!formModel.value.requestType.support) 
+        }
+      ) 
+    }
 }));
 
 const { formValidation, validateForm } = useValidation(formModel, validationRules);

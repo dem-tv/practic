@@ -10,7 +10,7 @@ import {
   DATE_FNS_FORMAT_ISO_WITH_TIMEZONE,
   DATE_FORMAT_ISO_WITH_TIMEZONE,
 } from '@/constants/dates';
-import { exampleList } from '@/constants/example';
+import { departmentHeader, departmentRows, exampleList } from '@/constants/example';
 import { ROUTE_NAME_MAIN } from '@/constants/routeNames';
 
 import { useValidation } from '@/composable/useValidation';
@@ -59,23 +59,17 @@ const validationRules = computed(() => ({
 const { formValidation, validateForm } = useValidation(formModel, validationRules);
 
 async function onShow() {
-  const isValid = await validateForm();
-  if (!isValid) return;
-
-  console.log(formModel.value);
+  await validateForm();
 }
 
 async function onPrepare() {
-  const isValid = await validateForm();
-  if (!isValid) return;
-
-  console.log(formModel.value);
+  await validateForm();
 }
 </script>
 
 <template>
   <TitledContent
-    :link-to-back="{ name: ROUTE_NAME_MAIN }"
+    :link-back="{ name: ROUTE_NAME_MAIN }"
     title="Трудозатраты"
   >
     <BaseForm>
@@ -118,9 +112,13 @@ async function onPrepare() {
         />
       </FieldWrapper>
       <HorizontalList>
-        <BaseButton @click="onShow"> Посмотреть </BaseButton>
-        <BaseButton @click="onPrepare"> Подготовить к загрузке </BaseButton>
+        <BaseButton @click="onShow">Посмотреть</BaseButton>
+        <BaseButton @click="onPrepare">Подготовить к загрузке</BaseButton>
       </HorizontalList>
     </BaseForm>
+    <BaseTable
+      :columns="departmentHeader"
+      :rows="departmentRows"
+    />
   </TitledContent>
 </template>

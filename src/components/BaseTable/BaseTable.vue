@@ -13,10 +13,12 @@ const props = defineProps({
    * `value` - поле строки таблицы, которое будет выведено под этим столбцом,
    * `format` - форматирование ячеек для текущего столбца,
    */
+
   columns: {
     type: Array as PropType<TableColumn<TableRow>[]>,
     default: () => [],
   },
+
   /**
    * Строки таблицы, содержащие данные ячеек.
    * Каждая срока - массив объектов, в которых:
@@ -36,6 +38,7 @@ const { formattedCellsContent } = useBaseDataTableCellContent({
 
 <template>
   <Vue3EasyDataTable
+    class="base-table"
     :headers="props.columns"
     :items="props.rows"
     hide-footer

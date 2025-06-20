@@ -1,3 +1,72 @@
-.table {
-  color: #2d2d2d;
+.base-table.vue3-easy-data-table .vue3-easy-data-table__main {
+  th,
+  td {
+    font-family: var(--font-primary);
+    color: #000000;
+  }
+
+  tr td {
+    border-color: var(--color-input-bg);
+  }
+
+  .vue3-easy-data-table__header th {
+    padding: 20px 28px 20px 8px;
+    font-weight: 400;
+    font-size: var(--font-size-text);
+    text-align: left;
+  }
+
+  .vue3-easy-data-table__header .sortable {
+    color: #ed4d29;
+    background-color: #ffded4;
+  }
+
+  .vue3-easy-data-table__header th:hover {
+    background-color: var(--color-input-bg);
+  }
+
+  .vue3-easy-data-table__header th::after,
+  th::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: -1px;
+    bottom: 20px;
+    width: 2px;
+    background-color: #d9d9d9;
+  }
+
+  .vue3-easy-data-table__header tr > th:last-child::after,
+  tr > th:last-child::before {
+    content: none;
+  }
+
+  .vue3-easy-data-table__header .sortable::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -1px;
+    bottom: 0;
+    width: 2px;
+    background-color: #d9d9d9;
+  }
+
+  .vue3-easy-data-table__body td {
+    padding: 8px;
+    font-weight: 400;
+    font-size: var(--font-size-text);
+  }
+
+  .cell-list-vertical-item {
+    padding: 1px;
+  }
+}
+
+.base-table {
+  border: 0 solid rgb(255, 0, 0);
+  border-radius: var(--radius-m);
+
+  tr:nth-child(odd) td {
+    background-color: var(--color-input-bg);
+  }
 }

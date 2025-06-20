@@ -71,15 +71,15 @@ const validationRules = computed(() => ({
       ),
     ),
   },
-  requestType: { 
-    required: helpers.withMessage(
-      ERROR_MESSAGE,
-      requiredIf(
-        () =>
-          !formModel.value.requestType.func && !formModel.value.requestType.support,
-      ),
-    ),
-  }
+  requestType: {
+    required: 
+      helpers.withMessage(
+        ERROR_MESSAGE,
+        () => {
+          return (!!formModel.value.requestType.func || !!formModel.value.requestType.support) 
+        }
+      ) 
+    }
 }));
 
 const { formValidation, validateForm } = useValidation(formModel, validationRules);

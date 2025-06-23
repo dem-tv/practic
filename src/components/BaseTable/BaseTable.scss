@@ -8,12 +8,6 @@
   overflow: hidden;
   border-radius: var(--radius-m);
 
-  .base-table__header .base-table__header-cell:hover,
-  .base-table__row:hover .base-table__cell {
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 0.2s;
-  }
-
   .base-table__header-cell--active {
     color: var(--color-primary);
     background-color: var(--color-primary-hover-accent);
@@ -39,12 +33,18 @@
     opacity: 1;
     width: 1px;
     background-color: var(--color-text-disabled);
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 0.2s;
   }
 
   .base-table__header-cell::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -1px;
     opacity: 0;
+    width: 1px;
+    background-color: var(--color-text-disabled);
+    transition: opacity 0.2s;
   }
 
   .base-table__header-cell--active + .base-table__header-cell::after,

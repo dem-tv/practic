@@ -1,4 +1,4 @@
-.base-table {
+.vue3-easy-data-table.base-table {
   --easy-table-border: 1px solid var(--color-stroke);
   --easy-table-header-font-size: 16px;
   --easy-table-header-item-padding: 20px 28px 20px 8px;
@@ -11,7 +11,7 @@
   .base-table__header .base-table__header-cell:hover,
   .base-table__row:hover .base-table__cell {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 0.3s;
+    transition-duration: 0.2s;
   }
 
   .base-table__header-cell--active {
@@ -36,13 +36,30 @@
     right: auto;
     bottom: 0;
     left: -1px;
+    opacity: 1;
     width: 1px;
     background-color: var(--color-text-disabled);
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 0.5s;
+    transition-duration: 0.2s;
   }
 
-  .base-table__header-cell--active::after,
+  .base-table__header-cell::after {
+    opacity: 0;
+  }
+
+  .base-table__header-cell--active + .base-table__header-cell::after,
+  .base-table__header-cell--active::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: -1px;
+    opacity: 1;
+    width: 1px;
+    background-color: var(--color-text-disabled);
+  }
+
   .base-table__header-cell::before {
     content: "";
     position: absolute;

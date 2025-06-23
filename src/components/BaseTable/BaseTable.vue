@@ -34,6 +34,13 @@ const props = defineProps({
 const { formattedCellsContent } = useBaseDataTableCellContent({
   columns: () => props.columns,
 });
+
+const getColumnClassNames = (column: TableColumn<TableRow>) => {
+  return {
+    'base-table__header-cell': true,
+    'base-table__header-cell--active': column.value === 'spent_hours',
+  };
+};
 </script>
 
 <template>
@@ -45,7 +52,7 @@ const { formattedCellsContent } = useBaseDataTableCellContent({
     body-item-class-name="base-table__cell"
     body-row-class-name="base-table__row"
     header-class-name="base-table__header"
-    header-item-class-name="base-table__header-cell"
+    :header-item-class-name="getColumnClassNames"
     hide-footer
   >
     <template #header="column">

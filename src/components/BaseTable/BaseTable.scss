@@ -14,13 +14,7 @@
     transition-duration: 0.3s;
   }
 
-  .base-table__header-cell:not(:first-child),
-  .base-table__cell {
-    font-family: var(--font-primary);
-    color: var(--color-dark);
-  }
-
-  .base-table__header-cell:first-child {
+  .base-table__header-cell--active {
     color: var(--color-primary);
     background-color: var(--color-primary-hover-accent);
   }
@@ -34,10 +28,8 @@
     text-align: left;
   }
 
-  .vue3-easy-data-table__header .sortable::before,
   .base-table__header-cell:hover::after,
-  .base-table__header-cell:hover:hover + .base-table__header-cell::after,
-  .base-table__header-cell:last-child:hover::before {
+  .base-table__header-cell:hover:hover + .base-table__header-cell::after {
     content: "";
     position: absolute;
     top: 0;
@@ -46,21 +38,20 @@
     left: -1px;
     width: 1px;
     background-color: var(--color-text-disabled);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
   }
 
+  .base-table__header-cell--active::after,
   .base-table__header-cell::before {
     content: "";
     position: absolute;
     top: 20px;
     right: 0;
     bottom: 20px;
+    left: -1px;
     width: 1px;
     background-color: var(--color-text-disabled);
-  }
-
-  .base-table__header-cell:last-child::before,
-  .base-table__header-cell:last-child:hover::after {
-    content: none;
   }
 
   .base-table__row:nth-child(odd) .base-table__cell {

@@ -38,9 +38,14 @@ const { formattedCellsContent } = useBaseDataTableCellContent({
 
 <template>
   <Vue3EasyDataTable
+    table-class-name="base-table"
     class="base-table"
     :headers="props.columns"
     :items="props.rows"
+    body-item-class-name="base-table__cell"
+    body-row-class-name="base-table__row"
+    header-class-name="base-table__header"
+    header-item-class-name="base-table__header-cell"
     hide-footer
   >
     <template #header="column">

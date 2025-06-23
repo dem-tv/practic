@@ -1,72 +1,73 @@
-.base-table.vue3-easy-data-table .vue3-easy-data-table__main {
-  th,
-  td {
+
+.base-table {
+  --easy-table-border: 1px solid rgb(234, 234, 234);
+  --easy-table-header-font-size: 16px;
+  --easy-table-header-item-padding: 20px 28px 20px 8px;
+  --easy-table-body-row-font-size: 16px;
+  --easy-table-body-item-padding: 8px;
+
+  border-radius: var(--radius-m);
+
+  .base-table__header-cell:not(:first-child),
+  .base-table__cell {
     font-family: var(--font-primary);
     color: #000000;
   }
 
-  tr td {
-    border-color: var(--color-input-bg);
-  }
-
-  .vue3-easy-data-table__header th {
-    padding: 20px 28px 20px 8px;
-    font-weight: 400;
-    font-size: var(--font-size-text);
-    text-align: left;
-  }
-
-  .vue3-easy-data-table__header .sortable {
+  .base-table__header-cell:first-child {
     color: #ed4d29;
     background-color: #ffded4;
-  }
-
-  .vue3-easy-data-table__header th:hover {
-    background-color: var(--color-input-bg);
-  }
-
-  .vue3-easy-data-table__header th::after,
-  th::before {
-    content: "";
-    position: absolute;
-    top: 20px;
-    right: -1px;
-    bottom: 20px;
-    width: 2px;
-    background-color: #d9d9d9;
-  }
-
-  .vue3-easy-data-table__header tr > th:last-child::after,
-  tr > th:last-child::before {
-    content: none;
-  }
-
-  .vue3-easy-data-table__header .sortable::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: -1px;
-    bottom: 0;
-    width: 2px;
-    background-color: #d9d9d9;
-  }
-
-  .vue3-easy-data-table__body td {
-    padding: 8px;
-    font-weight: 400;
-    font-size: var(--font-size-text);
   }
 
   .cell-list-vertical-item {
     padding: 1px;
   }
-}
 
-.base-table {
-  border: 0 solid rgb(255, 0, 0);
-  border-radius: var(--radius-m);
+  .vue3-easy-data-table__header .base-table__header-cell {
+    font-weight: 400;
+    text-align: left;
+  }
 
-  tr:nth-child(odd) td {
+  .vue3-easy-data-table__header .sortable::after,
+  .vue3-easy-data-table__header .sortable::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -1px;
+    bottom: 0;
+    width: 3px;
+    background-color: #d9d9d9;
+  }
+
+  .base-table__header-cell::after,
+  .base-table__header-cell::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: -1px;
+    bottom: 20px;
+    width: 3px;
+    background-color: #d9d9d9;
+  }
+
+  .base-table__header-cell:last-child::after,
+  .base-table__header-cell:last-child::before {
+    content: none;
+  }
+
+  .base-table__row:nth-child(odd) .base-table__cell {
     background-color: var(--color-input-bg);
+  }
+
+  .base-table__header-cell:hover {
+    background-color: var(--color-input-bg);
+  }
+
+  .base-table__row .base-table__cell {
+    border-color: var(--color-input-bg);
+  }
+
+  .base-table__row:first-child .base-table__cell {
+    border-bottom: var(--color-input-bg);
   }
 }

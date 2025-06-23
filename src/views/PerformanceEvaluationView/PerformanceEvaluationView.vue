@@ -4,7 +4,6 @@ import { helpers, required } from '@vuelidate/validators';
 import { getMessageRequired } from '@/utils/getMessage';
 
 import type { DateModel } from '@/types/datePeriod.types';
-import type { Type } from '@/types/applicationType.types';
 
 import {
     DATE_FNS_FORMAT_ISO_WITH_TIMEZONE,
@@ -21,13 +20,19 @@ const LABEL_PROJECT = 'Проекты';
 
 type FromModel = {
     period: DateModel;
-    application: Type | null;
+    requestType: {
+        functional: boolean,
+        accompaniment: boolean
+    };
     project: null;
 };
 
 const formModel = ref<FromModel>({
     period: null,
-    application: null,
+    requestType: {
+        functional: false,
+        accompaniment: false
+    },
     project: null,
 });
 
@@ -35,8 +40,14 @@ const validationRules = computed(() => ({
     period: {
         required: helpers.withMessage(getMessageRequired(LABEL_PERIOD), required),
     },
-    application: {
-        required: helpers.withMessage(getMessageRequired(LABEL_APPLICATION_TYPE), required),
+    requestType: {
+    required:
+        helpers.withMessage(
+        getMessageRequired(LABEL_APPLICATION_TYPE),
+        () => {
+            return (!!formModel.value.requestType.functional || !!formModel.value.requestType.accompaniment)
+        }
+        )
     },
     project: {
         required: helpers.withMessage(getMessageRequired(LABEL_PROJECT), required),
@@ -45,24 +56,11 @@ const validationRules = computed(() => ({
 
 const { formValidation, validateForm } = useValidation(formModel, validationRules);
 
-async function onShow() {
-    const isValid = await validateForm();
-    if (!isValid) return;
-
-    console.log(formModel.value);
-}
-
 async function onPrepare() {
     const isValid = await validateForm();
     if (!isValid) return;
 
     console.log(formModel.value);
-}
-
-function onSelectApplication(checked: boolean, option: Type) {
-    if (!checked) return;
-    formModel.value.application = option;
-    return formModel.value.application;
 }
 </script>
 
@@ -84,21 +82,28 @@ function onSelectApplication(checked: boolean, option: Type) {
             name="date"
         />
         <BaseFieldset
-            :error-message="formValidation.application.errorMessage"
-            :error="formValidation.application.invalid"
-            :required="formValidation.application.required"
+            :error-message="formValidation.requestType.errorMessage"
+            :error="formValidation.requestType.invalid"
+            :required="formValidation.requestType.required"
         >
             <OptionControl
-                v-for="option in applicationTypes"
-                @update:checked="onSelectApplication($event, option)"
-                :key="option.id"
+                :key="applicationTypes[0].id"
                 inputType="checkbox"
-                v-model="formModel.application"
-                :value="option.id"
-                :label="option.name"
+                v-model:checked="formModel.requestType.functional"
+                :value="applicationTypes[0].id"
+                :label="applicationTypes[0].name"
+                label-position="right"
+            />
+            <OptionControl
+                :key="applicationTypes[1].id"
+                inputType="checkbox"
+                v-model:checked="formModel.requestType.accompaniment"
+                :value="applicationTypes[1].id"
+                :label="applicationTypes[1].name"
                 label-position="right"
             />
         </BaseFieldset>
+        <p>{{formValidation.requestType.errorMessage}}</p>
         <FieldWrapper
             :label="LABEL_PROJECT"
             :error-message="formValidation.project.errorMessage"

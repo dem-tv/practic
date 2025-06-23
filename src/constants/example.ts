@@ -8,3 +8,5 @@ export const applicationTypes = [
   { id: 1, name: 'Функциональное развитие' },
   { id: 2, name: 'Сопровождение' },
 ]
+
+

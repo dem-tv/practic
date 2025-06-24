@@ -47,7 +47,7 @@ const slots = useSlots();
 
 const hasAppendSlots = computed(() => Boolean(slots?.appendIcon));
 const hasPrependSlots = computed(() => Boolean(slots?.prependIcon));
-// const hasErrorMessage = computed(() => props.errorMessage || slots.errorMessage);
+const hasErrorMessage = computed(() => props.errorMessage || slots.errorMessage);
 
 const classes = computed(() => ({
   'fieldset--error': props.error,
@@ -84,8 +84,13 @@ defineExpose({
         <slot />
       </div>
     </div>
-    <div class="fieldset__error-text">
-      {{ props.errorMessage }}
+    <div
+      v-if="hasErrorMessage"
+      class="field-wrapper__hint"
+    >
+      <div class="fieldset__error-text">
+        {{ props.errorMessage }}
+      </div>
     </div>
   </fieldset>
 </template>

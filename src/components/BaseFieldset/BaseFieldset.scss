@@ -31,36 +31,36 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding: 12px;
+    padding: 15px;
   }
 
-  &__field:hover {
+  &__inner:hover {
     border-color: var(--color-input-border-hover);
   }
 
-  &__field:focus-within {
+  &__inner:focus-within {
     border-color: var(--color-input-border-hover);
   }
 
-  &--active &__field {
+  &--active &__inner {
     border-color: var(--color-input-border-hover);
   }
 
-  &--error &__field {
+  &--error &__inner {
     border-color: var(--color-negative);
     box-shadow: var(--shadow-error);
   }
 
-  &--error &__field:focus-within {
+  &--error &__inner:focus-within {
     border-color: var(--color-negative);
     box-shadow: var(--shadow-default);
   }
 
-  &--disabled &__field:focus-within {
+  &--disabled &__inner:focus-within {
     border-color: var(--color-text-disabled);
   }
 
-  &--disabled &__field {
+  &--disabled &__inner {
     pointer-events: none;
     background-color: var(--color-bg-secondary);
   }

@@ -99,6 +99,7 @@ async function onPrepare() {
           :value="applicationTypes[0].id"
           :label="applicationTypes[0].name"
           label-position="right"
+          :error="formValidation.requestType.invalid"
         />
         <OptionControl
           :key="applicationTypes[1].id"
@@ -107,6 +108,7 @@ async function onPrepare() {
           :value="applicationTypes[1].id"
           :label="applicationTypes[1].name"
           label-position="right"
+          :error="formValidation.requestType.invalid"
         />
       </BaseFieldset>
       <FieldWrapper

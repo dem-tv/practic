@@ -82,7 +82,7 @@ async function onPrepare() {
 <template>
   <TitledContent
     :link-to-back="{ name: ROUTE_NAME_MAIN }"
-    title="Трудозатраты"
+    title="Недооцененные задачи"
   >
     <BaseForm>
       <DatePeriod

@@ -8,9 +8,12 @@ const props = defineProps({
 </script>
 
 <template>
-  <VerticalList :items="list">
+  <VerticalList
+    class="cell-list-vertical"
+    :items="list"
+  >
     <template #item="{ item }">
-      <span class="cell-list-vertical-item">{{ item }}</span>
+      <span class="cell-list-vertical__item">{{ item }}</span>
     </template>
   </VerticalList>
 </template>

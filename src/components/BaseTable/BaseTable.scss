@@ -1,29 +1,39 @@
-.vue3-easy-data-table.base-table {
+.base-table {
   --easy-table-border: 1px solid var(--color-stroke);
   --easy-table-header-font-size: 16px;
   --easy-table-header-item-padding: 20px 28px 20px 8px;
   --easy-table-body-row-font-size: 16px;
   --easy-table-body-item-padding: 8px;
+  --easy-table-body-row-hover-background-color: var(--color-input-bg-hover);
+  --easy-table-row-border: none;
 
   overflow: hidden;
   border-radius: var(--radius-m);
 
-  .base-table__header-cell--active {
-    color: var(--color-primary);
-    background-color: var(--color-primary-hover-accent);
+  &__header-cell--active {
+    --easy-table-header-font-color: var(--color-primary);
+    --easy-table-header-background-color: var(--color-primary-hover-accent);
   }
 
   .cell-list-vertical-item {
     padding: 1px;
   }
 
-  .vue3-easy-data-table__header .base-table__header-cell {
+  &__row &__cell,
+  &__header &__header-cell {
     font-weight: 400;
     text-align: left;
+    transition: background-color 0.3s;
   }
 
-  .base-table__header-cell:hover::after,
-  .base-table__header-cell:hover:hover + .base-table__header-cell::after {
+  &__row:first-child &__cell {
+    border-top: 1px solid var(--color-stroke);
+  }
+
+  &__header-cell--active + &__header-cell::after,
+  &__header-cell:hover::after,
+  &__header &__header-cell--active::after,
+  &__header-cell:hover:hover + &__header-cell::after {
     content: "";
     position: absolute;
     top: 0;
@@ -35,7 +45,7 @@
     background-color: var(--color-text-disabled);
   }
 
-  .base-table__header-cell::after {
+  &__header-cell::after {
     content: "";
     position: absolute;
     top: 0;
@@ -47,20 +57,7 @@
     transition: opacity 0.2s;
   }
 
-  .base-table__header-cell--active + .base-table__header-cell::after,
-  .base-table__header-cell--active::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: auto;
-    bottom: 0;
-    left: -1px;
-    opacity: 1;
-    width: 1px;
-    background-color: var(--color-text-disabled);
-  }
-
-  .base-table__header-cell::before {
+  &__header-cell::before {
     content: "";
     position: absolute;
     top: 20px;
@@ -71,19 +68,11 @@
     background-color: var(--color-text-disabled);
   }
 
-  .base-table__row:nth-child(odd) .base-table__cell {
-    background-color: var(--color-input-bg);
+  &__row:nth-child(odd) &__cell {
+    --easy-table-body-row-background-color: var(--color-input-bg);
   }
 
-  .base-table__header-cell:hover {
-    background-color: var(--color-input-bg);
-  }
-
-  .base-table__row .base-table__cell {
-    border-color: var(--color-input-bg);
-  }
-
-  .base-table__row:first-child .base-table__cell {
-    border-bottom: var(--color-input-bg);
+  &__header-cell:hover {
+    --easy-table-header-background-color: var(--color-input-bg-hover);
   }
 }

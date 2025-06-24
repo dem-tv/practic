@@ -1,3 +1,9 @@
-.cell-list-vertical-item {
-  display: inline-block;
+.cell-list-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  &__item {
+    display: inline-block;
+  }
 }

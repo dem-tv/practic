@@ -80,17 +80,13 @@ defineExpose({
       {{ props.label }}
     </legend>
     <div class="fieldset__inner">
-      <div class="fieldset__checkbox-group">
-        <slot />
-      </div>
+      <slot />
     </div>
     <div
       v-if="hasErrorMessage"
-      class="field-wrapper__hint"
+      class="fieldset__error-text"
     >
-      <div class="fieldset__error-text">
-        {{ props.errorMessage }}
-      </div>
+      {{ props.errorMessage }}
     </div>
   </fieldset>
 </template>

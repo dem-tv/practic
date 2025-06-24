@@ -90,7 +90,7 @@ async function onPrepare() {
         :label="LABEL_APPLICATION_TYPE"
         :error-message="formValidation.requestType.errorMessage"
         :error="formValidation.requestType.invalid"
-        :required="formValidation.requestType.required"
+        :required="true"
       >
         <OptionControl
           :key="applicationTypes[0].id"

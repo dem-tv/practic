@@ -36,8 +36,8 @@ export function useValidation<FormModel extends Record<string, unknown>>(
         return {
           ...acc,
           [fieldName]: {
-            invalid: validation.value[fieldName].$error,
-            errorMessage: getFirstValidationError(validation.value[fieldName]?.$errors),
+            invalid: validation.value[fieldName]?.$error,
+            errorMessage: getFirstValidationError(validation.value[fieldName]?.$errors || []),
             required: validation.value[fieldName]?.required?.$params.type === 'required',
           },
         };

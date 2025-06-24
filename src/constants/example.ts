@@ -6,6 +6,25 @@ export const exampleList = [
 
   { id: 3, name: 'Charlie', age: 35 },
 ];
+
+export const projectList = [
+  { id: 1, name: 'ЭкоФинанс' },
+  { id: 2, name: 'Банк для бизнеса' },
+  { id: 3, name: 'Инвестиции в стабильность' },
+];
+
+export const trackerList = [
+  { id: 1, name: 'ToDoist' },
+  { id: 2, name: 'TickTick' },
+  { id: 3, name: 'BeMob' },
+];
+
+export const typeRequestList = [
+  { id: 1, name: 'Только Белинвестбанк' },
+  { id: 2, name: 'Только проекты эксплуатации' },
+  { id: 3, name: 'Выбрать проекты' },
+];
+
 export const departmentRows = [
   {
     uid: 1307,

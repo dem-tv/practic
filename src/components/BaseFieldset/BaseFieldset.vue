@@ -1,25 +1,15 @@
 <script setup lang="ts">
-import { useTemplateRef } from 'vue';
-
 const props = defineProps({
-  /**
-   * Имя поля для привязки label.
-   */
-  name: {
-    type: String,
-    default: '',
-  },
-
   /**
    * Заголовок поля.
    */
-  label: {
+  legend: {
     type: String,
     default: '',
   },
 
   /**
-   * Указывает на наличие ошибки. Бордер и описание поля становятся красными.
+   * Указывает на наличие ошибки. Окрашивает контур чекбокса в красный.
    */
   error: {
     type: Boolean,
@@ -27,7 +17,7 @@ const props = defineProps({
   },
 
   /**
-   * Если указано - будет использовано вместо внутреннего сообщения об ошибке.
+   * Если указано - будет появляться сообщение об ошибке.
    */
   errorMessage: {
     type: String,
@@ -45,26 +35,16 @@ const props = defineProps({
 
 const slots = useSlots();
 
-const hasAppendSlots = computed(() => Boolean(slots?.appendIcon));
-const hasPrependSlots = computed(() => Boolean(slots?.prependIcon));
 const hasErrorMessage = computed(() => props.errorMessage || slots.errorMessage);
 
 const classes = computed(() => ({
   'fieldset--error': props.error,
   'fieldset--required': props.required,
-  'fieldset--append': hasAppendSlots.value,
-  'fieldset--prepend': hasPrependSlots.value,
 }));
-
-const wrapper = useTemplateRef<HTMLElement>('wrapper');
 
 const labelClasses = computed(() => ({
   fieldset__label: true,
 }));
-
-defineExpose({
-  el: wrapper,
-});
 </script>
 
 <template>
@@ -74,19 +54,22 @@ defineExpose({
   >
     <legend
       :class="labelClasses"
-      :for="props.name"
-      class="fieldset__label"
+      class="fieldset__legend"
     >
-      {{ props.label }}
+      <slot name="legend">
+        {{ props.legend }}
+      </slot>
     </legend>
     <div class="fieldset__inner">
       <slot />
     </div>
     <div
       v-if="hasErrorMessage"
-      class="fieldset__error-text"
+      class="fieldset__error"
     >
-      {{ props.errorMessage }}
+      <slot name="errorMessage">
+        {{ props.errorMessage }}
+      </slot>
     </div>
   </fieldset>
 </template>

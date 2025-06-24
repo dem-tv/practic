@@ -87,7 +87,7 @@ async function onPrepare() {
         name="date"
       />
       <BaseFieldset
-        :label="LABEL_APPLICATION_TYPE"
+        :legend="LABEL_APPLICATION_TYPE"
         :error-message="formValidation.requestType.errorMessage"
         :error="formValidation.requestType.invalid"
         :required="true"

@@ -1,5 +1,4 @@
 .fieldset {
-  position: relative;
   padding: 0;
   border: none;
 
@@ -11,17 +10,16 @@
     width: 100%;
     padding: 15px;
     background: var(--color-input-bg);
-    border: 1px solid var(--color-input-border);
     border-radius: var(--radius-m);
   }
 
-  &--error &__error-text {
-    padding-top: 5px;
-    font-size: 14px;
+  &--error &__error {
+    margin-top: 5px;
+    font-size: var(--font-size-label);
     color: var(--color-negative);
   }
 
-  &__label {
+  &__legend {
     display: block;
     margin-bottom: 10px;
     font-weight: normal;
@@ -37,43 +35,5 @@
   &--required &__label::after {
     content: "*";
     color: var(--color-negative);
-  }
-
-  &__icon--append {
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    font-size: var(--font-size-icon);
-  }
-
-  &__icon--append > :nth-child(n) {
-    padding-left: 10px;
-  }
-
-  &__icon--append > :last-child {
-    padding-right: var(--padding-horisontal);
-  }
-
-  &__icon--prepend {
-    --icon-size: 2.4rem;
-
-    position: absolute;
-    top: 50%;
-    left: var(--padding-horisontal);
-    padding: 0;
-    transform: translateY(-50%);
-  }
-
-  &--append {
-    --input-padding-right: 0;
-  }
-
-  &--prepend {
-    --input-padding-left: var(--padding-left-with-icon);
-  }
-
-  :focus-visible ~ &__length-counter {
-    visibility: visible;
-    opacity: 1;
   }
 }

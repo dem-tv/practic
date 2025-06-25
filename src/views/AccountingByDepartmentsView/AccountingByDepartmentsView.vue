@@ -1,38 +1,58 @@
 <script setup lang="ts">
-import { helpers, required } from '@vuelidate/validators';
+import { helpers, required, requiredIf } from '@vuelidate/validators';
 
-import { getMessageRequired } from '@/utils/getMessage';
+import { getMessageRequired, getMessageRequiredIf } from '@/utils/getMessage';
 
 import type { DateModel } from '@/types/datePeriod.types';
+import type { User } from '@/types/example.types';
 
 import {
   DATE_FNS_FORMAT_ISO_WITH_TIMEZONE,
   DATE_FORMAT_ISO_WITH_TIMEZONE,
 } from '@/constants/dates';
-import { typeProjectsList } from '@/constants/example';
+import { exampleList } from '@/constants/example';
 import { ROUTE_NAME_MAIN } from '@/constants/routeNames';
 
 import { useValidation } from '@/composable/useValidation';
 
 const LABEL_PERIOD = 'Период';
-const LABEL_TYPE_PROJECTS = 'Типы проектов';
+const LABEL_GROUPS = 'Группы сотрудников';
+const LABEL_EMPLOYEE = 'Сотрудник';
 
 type FromModel = {
   period: DateModel;
-  typeProjects: string;
+  groups: User | null;
+  employee: User[];
 };
 
 const formModel = ref<FromModel>({
   period: null,
-  typeProjects: '',
+  groups: null,
+  employee: [],
 });
 
 const validationRules = computed(() => ({
   period: {
     required: helpers.withMessage(getMessageRequired(LABEL_PERIOD), required),
   },
-  typeProjects: {
-   required: helpers.withMessage(getMessageRequired(LABEL_TYPE_PROJECTS), required),
+  groups: {
+    required: helpers.withMessage(
+      getMessageRequiredIf(LABEL_GROUPS, LABEL_EMPLOYEE),
+      requiredIf(
+        () =>
+          !formModel.value.employee.length ||
+          (!formModel.value.employee.length && !formModel.value.groups),
+      ),
+    ),
+  },
+  employee: {
+    required: helpers.withMessage(
+      getMessageRequiredIf(LABEL_EMPLOYEE, LABEL_GROUPS),
+      requiredIf(
+        () =>
+          !formModel.value.groups || (!formModel.value.employee.length && !formModel.value.groups),
+      ),
+    ),
   },
 }));
 
@@ -49,7 +69,7 @@ async function onPrepare() {
 <template>
   <TitledContent
     :link-to-back="{ name: ROUTE_NAME_MAIN }"
-    title="Трудозатраты для бухгалтерии"
+    title="Трудозатраты для бухгалтерии в разрезе подразделений"
   >
     <BaseForm>
       <DatePeriod
@@ -64,14 +84,28 @@ async function onPrepare() {
         name="date"
       />
       <FieldWrapper
-        :label="LABEL_TYPE_PROJECTS"
-        :error-message="formValidation.typeProjects.errorMessage"
-        :error="formValidation.typeProjects.invalid"
-        :required="formValidation.typeProjects.required"
+        :label="LABEL_GROUPS"
+        :error-message="formValidation.groups.errorMessage"
+        :error="formValidation.groups.invalid"
+        :required="formValidation.groups.required"
       >
         <BaseSelect
-          v-model="formModel.typeProjects"
-          :options="typeProjectsList"
+          v-model="formModel.groups"
+          :options="exampleList"
+          track-by="id"
+          label="name"
+        />
+      </FieldWrapper>
+      <FieldWrapper
+        :label="LABEL_EMPLOYEE"
+        :error-message="formValidation.employee.errorMessage"
+        :error="formValidation.employee.invalid"
+        :required="formValidation.employee.required"
+      >
+        <BaseSelect
+          v-model="formModel.employee"
+          multiple
+          :options="exampleList"
           track-by="id"
           label="name"
         />

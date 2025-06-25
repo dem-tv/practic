@@ -3,9 +3,42 @@ import type { TableColumn } from '@/types/table.types';
 export const exampleList = [
   { id: 1, name: 'Alice', age: 30 },
   { id: 2, name: 'Bob', age: 25 },
-
   { id: 3, name: 'Charlie', age: 35 },
 ];
+
+export const projectsList = [
+  { id: 1, name: 'Кредитные программы' },
+  { id: 2, name: 'Цифровизация услуг' },
+];
+export const applicationTypes = [
+  { id: 1, name: 'Функциональное развитие' },
+  { id: 2, name: 'Сопровождение' },
+];
+
+export const typeProjectsList = [
+  { id: 1, name: 'Инвестиционные проекты' },
+  { id: 2, name: 'Кредитные программы' },
+  { id: 3, name: 'Цифровизация услуг' },
+];
+export const statusList = [{ name: 'Ready' }, { name: 'Failure' }, { name: 'Error' }];
+export const projectList = [
+  { id: 1, name: 'ЭкоФинанс' },
+  { id: 2, name: 'Банк для бизнеса' },
+  { id: 3, name: 'Инвестиции в стабильность' },
+];
+
+export const trackerList = [
+  { id: 1, name: 'ToDoist' },
+  { id: 2, name: 'TickTick' },
+  { id: 3, name: 'BeMob' },
+];
+
+export const typeRequestList = [
+  { id: 1, name: 'Только Белинвестбанк' },
+  { id: 2, name: 'Только проекты эксплуатации' },
+  { id: 3, name: 'Выбрать проекты' },
+];
+
 export const departmentRows = [
   {
     uid: 1307,

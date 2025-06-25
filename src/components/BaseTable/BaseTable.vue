@@ -13,10 +13,12 @@ const props = defineProps({
    * `value` - поле строки таблицы, которое будет выведено под этим столбцом,
    * `format` - форматирование ячеек для текущего столбца,
    */
+
   columns: {
     type: Array as PropType<TableColumn<TableRow>[]>,
     default: () => [],
   },
+
   /**
    * Строки таблицы, содержащие данные ячеек.
    * Каждая срока - массив объектов, в которых:
@@ -32,12 +34,25 @@ const props = defineProps({
 const { formattedCellsContent } = useBaseDataTableCellContent({
   columns: () => props.columns,
 });
+
+const getColumnClassNames = (column: TableColumn<TableRow>) => {
+  return {
+    'base-table__header-cell': true,
+    'base-table__header-cell--active': column.value === 'spent_hours',
+  };
+};
 </script>
 
 <template>
   <Vue3EasyDataTable
+    table-class-name="base-table"
+    class="base-table"
     :headers="props.columns"
     :items="props.rows"
+    body-item-class-name="base-table__cell"
+    body-row-class-name="base-table__row"
+    header-class-name="base-table__header"
+    :header-item-class-name="getColumnClassNames"
     hide-footer
   >
     <template #header="column">

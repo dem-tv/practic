@@ -29,6 +29,7 @@ import {
   ROUTE_NAME_ACCOUNTING_PROJECT_LIST,
   ROUTE_NAME_ACCOUNTING_2,
   ROUTE_NAME_ACCOUNTING_BY_DEPARTMENTS,
+  ROUTE_NAME_LABOR_COSTS_UNDERVALUED_ISSUES,
 } from '@/constants/routeNames';
 
 const MainView = () => import('@/views/MainView/MainView.vue');
@@ -40,11 +41,13 @@ const LaborView = () => import('@/views/LaborView/LaborView.vue');
 
 // Трудозатраты
 const DepartmentView = () => import('@/views/DepartmentView/DepartmentView.vue');
+const UndervaluedIssuesView = () => import('@/views/UndervaluedIssuesView/UndervaluedIssuesView.vue');
 
 // Бухгалтерия
 const ProjectListViw = () => import('@/views/ProjectListView/ProjectListView.vue');
 const Accounting2View = () => import('@/views/Accounting2View/Accounting2View.vue');
 const AccountingByDepartmentsView = () => import('@/views/AccountingByDepartmentsView/AccountingByDepartmentsView.vue');
+
 
 // СМК
 const InternalTestView = () => import('@/views/InternalTestView/InternalTestView.vue');
@@ -68,7 +71,6 @@ const ActOfSupportBib = () => import('@/views/ActOfSupportBib/ActOfSupportBib.vu
 const TasksExtraByDate = () => import('@/views/TasksExtraByDate/TasksExtraByDate.vue');
 const Testing = () => import('@/views/Testing/Testing.vue');
 const ReceivedTasksByPeriod = () => import('@/views/ReceivedTasksByPeriod/ReceivedTasksByPeriod.vue');
-
 
 export const routes: Readonly<RouteRecordRaw[]> = [
   {
@@ -106,6 +108,11 @@ export const routes: Readonly<RouteRecordRaw[]> = [
     path: '/department',
     name: ROUTE_NAME_LABOR_COSTS_DEPARTMENT,
     component: DepartmentView,
+  },
+  {
+    path: '/undervalued-issues',
+    name: ROUTE_NAME_LABOR_COSTS_UNDERVALUED_ISSUES,
+    component: UndervaluedIssuesView,
   },
   // Бухгалтерия
   {

@@ -9,8 +9,14 @@ export const exampleList = [
 export const applicationTypes = [
   { id: 1, name: 'Функциональное развитие' },
   { id: 2, name: 'Сопровождение' },
-]
+];
 
+export const typeProjectsList = [
+  { id: 1, name: 'Инвестиционные проекты' },
+  { id: 2, name: 'Кредитные программы' },
+  { id: 3, name: 'Цифровизация услуг' },
+];
+export const statusList = [{ name: 'Ready' }, { name: 'Failure' }, { name: 'Error' }];
 export const projectList = [
   { id: 1, name: 'ЭкоФинанс' },
   { id: 2, name: 'Банк для бизнеса' },

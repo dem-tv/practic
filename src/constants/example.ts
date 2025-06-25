@@ -10,6 +10,11 @@ export const projectsList = [
   { id: 1, name: 'Кредитные программы' },
   { id: 2, name: 'Цифровизация услуг' },
 ];
+export const applicationTypes = [
+  { id: 1, name: 'Функциональное развитие' },
+  { id: 2, name: 'Сопровождение' },
+];
+
 export const typeProjectsList = [
   { id: 1, name: 'Инвестиционные проекты' },
   { id: 2, name: 'Кредитные программы' },
@@ -275,9 +280,4 @@ export const departmentHeader: TableColumn<(typeof departmentRows)[number]>[] = 
       },
     }),
   },
-];
-
-export const applicationTypes = [
-  { id: 1, name: 'Функциональное развитие' },
-  { id: 2, name: 'Сопровождение' },
 ];

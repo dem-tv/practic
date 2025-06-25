@@ -2,7 +2,7 @@ import type { ComputedRef, Ref } from 'vue';
 import type { ErrorObject } from '@vuelidate/core';
 import useVuelidate from '@vuelidate/core';
 
-export function getFirstValidationError(errors: ErrorObject[]) {
+export function getFirstValidationError(errors: ErrorObject[] = []) {
   return (errors[0]?.$message as string) || '';
 }
 
@@ -37,7 +37,7 @@ export function useValidation<FormModel extends Record<string, unknown>>(
           ...acc,
           [fieldName]: {
             invalid: validation.value[fieldName]?.$error,
-            errorMessage: getFirstValidationError(validation.value[fieldName]?.$errors || []),
+            errorMessage: getFirstValidationError(validation.value[fieldName]?.$errors),
             required: validation.value[fieldName]?.required?.$params.type === 'required',
           },
         };

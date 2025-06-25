@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 
+import 'vue3-easy-data-table/dist/style.css';
 // eslint-disable-next-line import-x/no-unresolved
 import 'virtual:svg-icons-register';
 import '@vuepic/vue-datepicker/dist/main.css';

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { helpers, required, requiredIf } from '@vuelidate/validators';
 
-import { getMessageRequired } from '@/utils/getMessage';
+import { getBannedValueMessage, getMessageRequired } from '@/utils/getMessage';
 
 import type { DateModel } from '@/types/datePeriod.types';
 
@@ -9,47 +9,35 @@ import {
   DATE_FNS_FORMAT_ISO_WITH_TIMEZONE,
   DATE_FORMAT_ISO_WITH_TIMEZONE,
 } from '@/constants/dates';
-import { projectList } from '@/constants/example';
 import { ROUTE_NAME_MAIN } from '@/constants/routeNames';
 
 import { useValidation } from '@/composable/useValidation';
 
 const LABEL_PERIOD = 'Период';
-const LABEL_PROJECTS = 'Проекты';
+const LABEL_COST = 'Стоимость н/ч';
 
 type FromModel = {
   period: DateModel;
-  projects: string;
-  tasks: boolean;
+  cost: number;
 };
 
 const formModel = ref<FromModel>({
   period: null,
-  projects: '',
-  tasks: false,
+  cost: null,
 });
 
 const validationRules = computed(() => ({
   period: {
     required: helpers.withMessage(getMessageRequired(LABEL_PERIOD), required),
   },
-  projects: {
-    required: helpers.withMessage(getMessageRequired(LABEL_PROJECTS), required),
-  },
-  tasks: {
-    required: helpers.withMessage("Галочка не поставленa", 
-    requiredIf(() => !formModel.value.tasks)),
+  cost: {
+    required: helpers.withMessage(getBannedValueMessage(LABEL_COST), () => {
+      return Number(formModel.value.cost) !== 0 && formModel.value.cost;
+    }),
   },
 }));
 
 const { formValidation, validateForm } = useValidation(formModel, validationRules);
-
-async function onShow() {
-  const isValid = await validateForm();
-  if (!isValid) return;
-
-  console.log(formModel.value);
-}
 
 async function onPrepare() {
   const isValid = await validateForm();
@@ -62,7 +50,7 @@ async function onPrepare() {
 <template>
   <TitledContent
     :link-to-back="{ name: ROUTE_NAME_MAIN }"
-    title="Анализ тестирования"
+    title="Акт по сопровождению (БИБ)"
   >
     <BaseForm>
       <DatePeriod
@@ -76,35 +64,16 @@ async function onPrepare() {
         placeholder="Выберите период"
         name="date"
       />
-       <BaseFieldset
-        :error-message="formValidation.tasks.errorMessage"
-        :error="formValidation.tasks.invalid"
-        :required="formValidation.tasks.required"
-      >
-        <OptionControl
-          v-model:checked="formModel.tasks"
-          label ="Только Белинвестбанк"
-          inputType="checkbox"
-          labelPosition = "right"
-        />
-      </BaseFieldset>
-      <FieldWrapper
-        :label="LABEL_PROJECTS"
-        :error-message="formValidation.projects.errorMessage"
-        :error="formValidation.projects.invalid"
-        :required="formValidation.projects.required"
-      >
-        <BaseSelect
-          v-model="formModel.projects"
-          multiple
-          :options="projectList"
-          track-by="id"
-          label="name"
-        />
-      </FieldWrapper>
-     
+      <BaseField
+        v-model="formModel.cost"
+        inputmode="numeric"
+        :label="LABEL_COST"
+        :error-message="formValidation.cost.errorMessage"
+        :error="formValidation.cost.invalid"
+        :required="formValidation.cost.required"
+        placeholder="0.00"
+      />
       <HorizontalList>
-        <BaseButton @click="onShow"> Посмотреть </BaseButton>
         <BaseButton @click="onPrepare"> Подготовить к загрузке </BaseButton>
       </HorizontalList>
     </BaseForm>

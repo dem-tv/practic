@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { helpers, required, requiredIf } from '@vuelidate/validators';
+import { helpers, required } from '@vuelidate/validators';
 
 import { getMessageRequired } from '@/utils/getMessage';
 
@@ -9,36 +9,42 @@ import {
   DATE_FNS_FORMAT_ISO_WITH_TIMEZONE,
   DATE_FORMAT_ISO_WITH_TIMEZONE,
 } from '@/constants/dates';
-import { projectList } from '@/constants/example';
+import { projectList, trackerList, typeRequestList } from '@/constants/example';
 import { ROUTE_NAME_MAIN } from '@/constants/routeNames';
 
 import { useValidation } from '@/composable/useValidation';
 
 const LABEL_PERIOD = 'Период';
 const LABEL_PROJECTS = 'Проекты';
+const LABEL_TRACKERS = 'Трекеры';
+const LABEL_UGKPO = 'УГКПО';
+const LABEL_TYPE_REQUEST = 'Тип заявки';
 
 type FromModel = {
   period: DateModel;
   projects: string;
+  trackers: string;
   tasks: boolean;
+  requestType: string;
 };
 
 const formModel = ref<FromModel>({
   period: null,
   projects: '',
+  trackers: '',
   tasks: false,
+  requestType: '',
 });
 
 const validationRules = computed(() => ({
   period: {
     required: helpers.withMessage(getMessageRequired(LABEL_PERIOD), required),
   },
-  projects: {
-    required: helpers.withMessage(getMessageRequired(LABEL_PROJECTS), required),
+  trackers: {
+    required: helpers.withMessage(getMessageRequired(LABEL_TRACKERS), required),
   },
-  tasks: {
-    required: helpers.withMessage("Галочка не поставленa", 
-    requiredIf(() => !formModel.value.tasks)),
+  requestType: {
+    required: helpers.withMessage(getMessageRequired(LABEL_TYPE_REQUEST), required),
   },
 }));
 
@@ -62,7 +68,7 @@ async function onPrepare() {
 <template>
   <TitledContent
     :link-to-back="{ name: ROUTE_NAME_MAIN }"
-    title="Анализ тестирования"
+    title="Отчет по тестировщикам"
   >
     <BaseForm>
       <DatePeriod
@@ -76,33 +82,61 @@ async function onPrepare() {
         placeholder="Выберите период"
         name="date"
       />
-       <BaseFieldset
-        :error-message="formValidation.tasks.errorMessage"
-        :error="formValidation.tasks.invalid"
-        :required="formValidation.tasks.required"
+      <BaseFieldset
+        :legend="LABEL_TYPE_REQUEST"
+        :error-message="formValidation.requestType.errorMessage"
+        :error="formValidation.requestType.invalid"
+        :required="true"
       >
         <OptionControl
-          v-model:checked="formModel.tasks"
-          label ="Только Белинвестбанк"
-          inputType="checkbox"
-          labelPosition = "right"
+          v-for="option in typeRequestList"
+          :key="option.id"
+          :value="option.id"
+          name="name"
+          :label="option.name"
+          input-type="radio"
+          label-position="right"
+          :error="formValidation.requestType.invalid"
+          @update:checked="
+            (checked) => {
+              if (!checked) return;
+              formModel.requestType = option;
+            }
+          "
         />
       </BaseFieldset>
-      <FieldWrapper
-        :label="LABEL_PROJECTS"
-        :error-message="formValidation.projects.errorMessage"
-        :error="formValidation.projects.invalid"
-        :required="formValidation.projects.required"
-      >
+      <FieldWrapper :label="LABEL_PROJECTS">
         <BaseSelect
           v-model="formModel.projects"
           multiple
           :options="projectList"
+          placeholder="Выберите из списка"
           track-by="id"
           label="name"
         />
       </FieldWrapper>
-     
+      <FieldWrapper
+        :label="LABEL_TRACKERS"
+        :error-message="formValidation.trackers.errorMessage"
+        :error="formValidation.trackers.invalid"
+        :required="formValidation.trackers.required"
+      >
+        <BaseSelect
+          v-model="formModel.trackers"
+          multiple
+          :options="trackerList"
+          track-by="id"
+          label="name"
+        />
+      </FieldWrapper>
+      <BaseFieldset>
+        <OptionControl
+          v-model:checked="formModel.tasks"
+          :label="LABEL_UGKPO"
+          input-type="checkbox"
+          label-position="right"
+        />
+      </BaseFieldset>
       <HorizontalList>
         <BaseButton @click="onShow"> Посмотреть </BaseButton>
         <BaseButton @click="onPrepare"> Подготовить к загрузке </BaseButton>

@@ -6,6 +6,11 @@ export const exampleList = [
   { id: 3, name: 'Charlie', age: 35 },
 ];
 
+export const typeProjectsList = [
+  { id: 1, name: 'Инвестиционные проекты' },
+  { id: 2, name: 'Кредитные программы' },
+  { id: 3, name: 'Цифровизация услуг' },
+];
 export const statusList = [{ name: 'Ready' }, { name: 'Failure' }, { name: 'Error' }];
 export const projectList = [
   { id: 1, name: 'ЭкоФинанс' },

@@ -23,12 +23,14 @@ type FromModel = {
   period: DateModel;
   groups: User | null;
   employee: User[];
+  tasks: boolean;
 };
 
 const formModel = ref<FromModel>({
   period: null,
   groups: null,
   employee: [],
+  tasks: false,
 });
 
 const validationRules = computed(() => ({
@@ -54,9 +56,20 @@ const validationRules = computed(() => ({
       ),
     ),
   },
+  tasks: {
+    required: helpers.withMessage("Галочка не поставленa", 
+    requiredIf(() => !formModel.value.tasks)),
+  },
 }));
 
 const { formValidation, validateForm } = useValidation(formModel, validationRules);
+
+async function onShow() {
+  const isValid = await validateForm();
+  if (!isValid) return;
+
+  console.log(formModel.value);
+}
 
 async function onPrepare() {
   const isValid = await validateForm();
@@ -69,7 +82,7 @@ async function onPrepare() {
 <template>
   <TitledContent
     :link-to-back="{ name: ROUTE_NAME_MAIN }"
-    title="Трудозатраты для бухгалтерии в разрезе подразделений"
+    title="Недооцененные задачи"
   >
     <BaseForm>
       <DatePeriod
@@ -110,7 +123,20 @@ async function onPrepare() {
           label="name"
         />
       </FieldWrapper>
+      <BaseFieldset
+        :error-message="formValidation.tasks.errorMessage"
+        :error="formValidation.tasks.invalid"
+        :required="formValidation.tasks.required"
+      >
+        <OptionControl
+          v-model:checked="formModel.tasks"
+          label ="Задачи с оценкой на ошибки"
+          inputType="checkbox"
+          labelPosition = "right"
+        />
+      </BaseFieldset>
       <HorizontalList>
+        <BaseButton @click="onShow"> Посмотреть </BaseButton>
         <BaseButton @click="onPrepare"> Подготовить к загрузке </BaseButton>
       </HorizontalList>
     </BaseForm>

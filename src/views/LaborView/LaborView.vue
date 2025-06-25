@@ -7,12 +7,17 @@ import {
   ROUTE_NAME_LABOR_COSTS_PROJECT,
   ROUTE_NAME_LABOR_COSTS_UNDERVALUED_ISSUES,
   ROUTE_NAME_MANAGEMENT_EMPLOYEES,
+  ROUTE_NAME_USS,
 } from '@/constants/routeNames';
 
 const LIST_NAVIGATION: NavItem[] = [
   {
     title: 'Трудозатраты',
     to: { name: ROUTE_NAME_LABOR_COSTS_DEPARTMENT },
+  },
+  {
+    title: 'Трудозатраты УЦС',
+    to: { name: ROUTE_NAME_USS },
   },
   {
     title: 'Отчет по сотрудникам управления, со статистикой по тружозатратам',

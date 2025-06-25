@@ -33,6 +33,7 @@ import {
   ROUTE_NAME_TESTING,
   ROUTE_NAME_UNFULFILLED_REQUESTS_FOR,
   ROUTE_NAME_UNFULFILLED_REQUESTS_ON_APPRECIATED_AND_UNAPPRECIATED,
+  ROUTE_NAME_USS,
 } from '@/constants/routeNames';
 
 const MainView = () => import('@/views/MainView/MainView.vue');
@@ -44,6 +45,7 @@ const LaborView = () => import('@/views/LaborView/LaborView.vue');
 
 // Трудозатраты
 const DepartmentView = () => import('@/views/DepartmentView/DepartmentView.vue');
+const USSView = () => import('@/views/USSView/USSView.vue');
 const EmployeesView = () => import('@/views/EmployeesView/EmployeesView.vue');
 const DesignView = () => import('@/views/DesignView/DesignView.vue');
 const ProjectView = () => import('@/views/ProjectView/ProjectView.vue');
@@ -129,6 +131,11 @@ export const routes: Readonly<RouteRecordRaw[]> = [
     path: '/department',
     name: ROUTE_NAME_LABOR_COSTS_DEPARTMENT,
     component: DepartmentView,
+  },
+  {
+    path: '/uss',
+    name: ROUTE_NAME_USS,
+    component: USSView,
   },
   {
     path: '/design',

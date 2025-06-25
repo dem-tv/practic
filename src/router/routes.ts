@@ -17,6 +17,7 @@ import {
   ROUTE_NAME_INTERNAL_TEST_ANALYSIS,
   ROUTE_NAME_LABOR_COSTS,
   ROUTE_NAME_LABOR_COSTS_DEPARTMENT,
+  ROUTE_NAME_LABOR_COSTS_DESIGN,
   ROUTE_NAME_LABOR_COSTS_PROJECT,
   ROUTE_NAME_MAIN,
   ROUTE_NAME_QMS,
@@ -42,6 +43,7 @@ const LaborView = () => import('@/views/LaborView/LaborView.vue');
 
 // Трудозатраты
 const DepartmentView = () => import('@/views/DepartmentView/DepartmentView.vue');
+const DesignView = () => import('@/views/DesignView/DesignView.vue');
 const ProjectView = () => import('@/views/ProjectView/ProjectView.vue');
 const UndervaluedIssuesView = () => import('@/views/UndervaluedIssuesView/UndervaluedIssuesView.vue');
 
@@ -124,6 +126,11 @@ export const routes: Readonly<RouteRecordRaw[]> = [
     path: '/department',
     name: ROUTE_NAME_LABOR_COSTS_DEPARTMENT,
     component: DepartmentView,
+  },
+   {
+    path: '/design',
+    name: ROUTE_NAME_LABOR_COSTS_DESIGN,
+    component: DesignView,
   },
   {
     path: '/projects',

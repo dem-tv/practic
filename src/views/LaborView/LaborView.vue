@@ -3,6 +3,7 @@ import type { NavItem } from '@/types/navigation.types';
 
 import {
   ROUTE_NAME_LABOR_COSTS_DEPARTMENT,
+  ROUTE_NAME_LABOR_COSTS_DESIGN,
   ROUTE_NAME_LABOR_COSTS_PROJECT,
   ROUTE_NAME_LABOR_COSTS_UNDERVALUED_ISSUES,
 } from '@/constants/routeNames';
@@ -11,6 +12,10 @@ const LIST_NAVIGATION: NavItem[] = [
   {
     title: 'Трудозатраты',
     to: { name: ROUTE_NAME_LABOR_COSTS_DEPARTMENT },
+  },
+  {
+    title: 'Трудозатраты отдела дизайна',
+    to: { name: ROUTE_NAME_LABOR_COSTS_DESIGN },
   },
   {
     title: 'Трудозатраты по проектам',

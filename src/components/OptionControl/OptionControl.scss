@@ -52,7 +52,8 @@
   }
 
   &--error &__input ~ &__check-mark {
-    background-color: var(--color-negative);
+    background-color: transparent;
+    border-color: var(--color-negative);
   }
 
   &--text-right {
@@ -95,6 +96,7 @@
   &__title {
     font-size: 1.6rem;
     line-height: 2.4rem;
+    color: var(--color-text-main);
     text-wrap: nowrap;
   }
 

@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import type { NavItem } from '@/types/navigation.types';
 
-import { ROUTE_NAME_LABOR_COSTS_DEPARTMENT, ROUTE_NAME_LABOR_COSTS_UNDERVALUED_ISSUES } from '@/constants/routeNames';
+import {
+  ROUTE_NAME_LABOR_COSTS_DEPARTMENT,
+  ROUTE_NAME_LABOR_COSTS_PROJECT,
+  ROUTE_NAME_LABOR_COSTS_UNDERVALUED_ISSUES,
+} from '@/constants/routeNames';
 
 const LIST_NAVIGATION: NavItem[] = [
   {
@@ -9,8 +13,12 @@ const LIST_NAVIGATION: NavItem[] = [
     to: { name: ROUTE_NAME_LABOR_COSTS_DEPARTMENT },
   },
   {
+    title: 'Трудозатраты по проектам',
+    to: { name: ROUTE_NAME_LABOR_COSTS_PROJECT },
+  },
+  {
     title: 'Недооцененные задачи',
-    to: { name: ROUTE_NAME_LABOR_COSTS_UNDERVALUED_ISSUES},
+    to: { name: ROUTE_NAME_LABOR_COSTS_UNDERVALUED_ISSUES },
   },
 ];
 </script>

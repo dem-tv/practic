@@ -2,33 +2,34 @@ import type { RouteRecordRaw } from 'vue-router';
 
 import {
   ROUTE_NAME_ACCOUNTING,
-  ROUTE_NAME_LABOR_COSTS,
-  ROUTE_NAME_LABOR_COSTS_DEPARTMENT,
-  ROUTE_NAME_INTERNAL_TEST_ANALYSIS,
-  ROUTE_NAME_TEST_ANALYSIS,
-  ROUTE_NAME_APPLICATIONS_PERFORMANCE_EVALUATION,
-  ROUTE_NAME_EFFECTIVENESS_PROCESS,
-  ROUTE_NAME_MAIN,
-  ROUTE_NAME_QMS,
-  ROUTE_NAME_SUPPORT,
-  ROUTE_NAME_ANALYSIS_TASK_STATUS_CHANGES,
-  ROUTE_NAME_DONE_TASKS_BY_PERIOD,
-  ROUTE_NAME_EXTRA_TASKS_BY_DATE,
-  ROUTE_NAME_ANALYSIS_TASKS,
-  ROUTE_NAME_TASKS_RETURNED_AND_RECEIVED_FOR_ONE_PERIOD,
-  ROUTE_NAME_ANALYSIS_TASK_STATUS_CHANGESTASKS_RETURNED_AND_RECEIVED_AS_UNFULFILLED_FOR_ONE_PERIOD,
-  ROUTE_NAME_TASKS_RETURNED_FOR_REVISION_BY_PERIOD,
-  ROUTE_NAME_TASKS_EXTRA_PERIOD,
-  ROUTE_NAME_DEADLINE_CONTROL_SUPPORT_TASKS_EXECUTION,
-  ROUTE_NAME_UNFULFILLED_REQUESTS_FOR,
-  ROUTE_NAME_UNFULFILLED_REQUESTS_ON_APPRECIATED_AND_UNAPPRECIATED,
-  ROUTE_NAME_ACT_OF_SUPPORT_BIB,
-  ROUTE_NAME_TASKS_EXTRA_BY_DATE,
-  ROUTE_NAME_TESTING,
-  ROUTE_NAME_RECEIVED_TASKS_BY_PERIOD,
-  ROUTE_NAME_ACCOUNTING_PROJECT_LIST,
   ROUTE_NAME_ACCOUNTING_2,
   ROUTE_NAME_ACCOUNTING_BY_DEPARTMENTS,
+  ROUTE_NAME_ACCOUNTING_PROJECT_LIST,
+  ROUTE_NAME_ACT_OF_SUPPORT_BIB,
+  ROUTE_NAME_ANALYSIS_TASK_STATUS_CHANGES,
+  ROUTE_NAME_ANALYSIS_TASK_STATUS_CHANGESTASKS_RETURNED_AND_RECEIVED_AS_UNFULFILLED_FOR_ONE_PERIOD,
+  ROUTE_NAME_ANALYSIS_TASKS,
+  ROUTE_NAME_APPLICATIONS_PERFORMANCE_EVALUATION,
+  ROUTE_NAME_DEADLINE_CONTROL_SUPPORT_TASKS_EXECUTION,
+  ROUTE_NAME_DONE_TASKS_BY_PERIOD,
+  ROUTE_NAME_EFFECTIVENESS_PROCESS,
+  ROUTE_NAME_EXTRA_TASKS_BY_DATE,
+  ROUTE_NAME_INTERNAL_TEST_ANALYSIS,
+  ROUTE_NAME_LABOR_COSTS,
+  ROUTE_NAME_LABOR_COSTS_DEPARTMENT,
+  ROUTE_NAME_LABOR_COSTS_PROJECT,
+  ROUTE_NAME_MAIN,
+  ROUTE_NAME_QMS,
+  ROUTE_NAME_RECEIVED_TASKS_BY_PERIOD,
+  ROUTE_NAME_SUPPORT,
+  ROUTE_NAME_TASKS_EXTRA_BY_DATE,
+  ROUTE_NAME_TASKS_EXTRA_PERIOD,
+  ROUTE_NAME_TASKS_RETURNED_AND_RECEIVED_FOR_ONE_PERIOD,
+  ROUTE_NAME_TASKS_RETURNED_FOR_REVISION_BY_PERIOD,
+  ROUTE_NAME_TEST_ANALYSIS,
+  ROUTE_NAME_TESTING,
+  ROUTE_NAME_UNFULFILLED_REQUESTS_FOR,
+  ROUTE_NAME_UNFULFILLED_REQUESTS_ON_APPRECIATED_AND_UNAPPRECIATED,
   ROUTE_NAME_LABOR_COSTS_UNDERVALUED_ISSUES,
 } from '@/constants/routeNames';
 
@@ -41,32 +42,47 @@ const LaborView = () => import('@/views/LaborView/LaborView.vue');
 
 // Трудозатраты
 const DepartmentView = () => import('@/views/DepartmentView/DepartmentView.vue');
+const ProjectView = () => import('@/views/ProjectView/ProjectView.vue');
 const UndervaluedIssuesView = () => import('@/views/UndervaluedIssuesView/UndervaluedIssuesView.vue');
 
 // Бухгалтерия
 const ProjectListViw = () => import('@/views/ProjectListView/ProjectListView.vue');
 const Accounting2View = () => import('@/views/Accounting2View/Accounting2View.vue');
-const AccountingByDepartmentsView = () => import('@/views/AccountingByDepartmentsView/AccountingByDepartmentsView.vue');
+const AccountingByDepartmentsView = () =>
+  import('@/views/AccountingByDepartmentsView/AccountingByDepartmentsView.vue');
 
 
 // СМК
 const InternalTestView = () => import('@/views/InternalTestView/InternalTestView.vue');
 const TestAnalysisView = () => import('@/views/TestAnalysisView/TestAnalysisView.vue');
-const PerformanceEvaluationView = () => import('@/views/PerformanceEvaluationView/PerformanceEvaluationView.vue');
-const EffectivenessProcessView = () => import('@/views/EffectivenessProcessView/EffectivenessProcessView.vue');
+const PerformanceEvaluationView = () =>
+  import('@/views/PerformanceEvaluationView/PerformanceEvaluationView.vue');
+const EffectivenessProcessView = () =>
+  import('@/views/EffectivenessProcessView/EffectivenessProcessView.vue');
 
 //Сопровождение
-const AnalysisTaskStatusChanges = () => import('@/views/AnalysisTaskStatusChanges/AnalysisTaskStatusChanges.vue');
+const AnalysisTaskStatusChanges = () =>
+  import('@/views/AnalysisTaskStatusChanges/AnalysisTaskStatusChanges.vue');
 const DoneTasksByPeriod = () => import('@/views/DoneTasksByPeriod/DoneTasksByPeriod.vue');
 const ExtraTasksByDate = () => import('@/views/ExtraTasksByDate/ExtraTasksByDate.vue');
 const AnalysisTasks = () => import('@/views/AnalysisTasks/AnalysisTasks.vue');
-const TasksReturnedAndReceivedForOnePeriod = () => import('@/views/TasksReturnedAndReceivedForOnePeriod/TasksReturnedAndReceivedForOnePeriod.vue');
-const TasksReturnedAndReceivedAsUnfulfilledForOnePeriod = () => import('@/views/TasksReturnedAndReceivedAsUnfulfilledForOnePeriod/TasksReturnedAndReceivedAsUnfulfilledForOnePeriod.vue');
-const TasksReturnedForRevisionByPeriod = () => import('@/views/TasksReturnedForRevisionByPeriod/TasksReturnedForRevisionByPeriod.vue');
+const TasksReturnedAndReceivedForOnePeriod = () =>
+  import('@/views/TasksReturnedAndReceivedForOnePeriod/TasksReturnedAndReceivedForOnePeriod.vue');
+const TasksReturnedAndReceivedAsUnfulfilledForOnePeriod = () =>
+  import(
+    '@/views/TasksReturnedAndReceivedAsUnfulfilledForOnePeriod/TasksReturnedAndReceivedAsUnfulfilledForOnePeriod.vue'
+  );
+const TasksReturnedForRevisionByPeriod = () =>
+  import('@/views/TasksReturnedForRevisionByPeriod/TasksReturnedForRevisionByPeriod.vue');
 const TasksExtraPeriod = () => import('@/views/TasksExtraPeriod/TasksExtraPeriod.vue');
-const DeadlineControlSupportTasksExecution = () => import('@/views/DeadlineControlSupportTasksExecution/DeadlineControlSupportTasksExecution.vue');
-const UnfulfilledRequestsFor = () => import('@/views/UnfulfilledRequestsFor/UnfulfilledRequestsFor.vue');
-const UnfulfilledRequestsOnAppreciatedAndUnappreciated = () => import('@/views/UnfulfilledRequestsOnAppreciatedAndUnappreciated/UnfulfilledRequestsOnAppreciatedAndUnappreciated.vue');
+const DeadlineControlSupportTasksExecution = () =>
+  import('@/views/DeadlineControlSupportTasksExecution/DeadlineControlSupportTasksExecution.vue');
+const UnfulfilledRequestsFor = () =>
+  import('@/views/UnfulfilledRequestsFor/UnfulfilledRequestsFor.vue');
+const UnfulfilledRequestsOnAppreciatedAndUnappreciated = () =>
+  import(
+    '@/views/UnfulfilledRequestsOnAppreciatedAndUnappreciated/UnfulfilledRequestsOnAppreciatedAndUnappreciated.vue'
+  );
 const ActOfSupportBib = () => import('@/views/ActOfSupportBib/ActOfSupportBib.vue');
 const TasksExtraByDate = () => import('@/views/TasksExtraByDate/TasksExtraByDate.vue');
 const Testing = () => import('@/views/Testing/Testing.vue');
@@ -110,6 +126,11 @@ export const routes: Readonly<RouteRecordRaw[]> = [
     component: DepartmentView,
   },
   {
+    path: '/projects',
+    name: ROUTE_NAME_LABOR_COSTS_PROJECT,
+    component: ProjectView,
+  },
+  {
     path: '/undervalued-issues',
     name: ROUTE_NAME_LABOR_COSTS_UNDERVALUED_ISSUES,
     component: UndervaluedIssuesView,
@@ -130,7 +151,6 @@ export const routes: Readonly<RouteRecordRaw[]> = [
     name: ROUTE_NAME_ACCOUNTING_BY_DEPARTMENTS,
     component: AccountingByDepartmentsView,
   },
-
 
   // СМК
   {
@@ -154,7 +174,6 @@ export const routes: Readonly<RouteRecordRaw[]> = [
     component: EffectivenessProcessView,
   },
 
-
   //Сопровождение
   {
     path: '/analysis-task-status-changes',
@@ -163,7 +182,7 @@ export const routes: Readonly<RouteRecordRaw[]> = [
   },
   {
     path: '/done-tasks-by-period',
-    name:   ROUTE_NAME_DONE_TASKS_BY_PERIOD,
+    name: ROUTE_NAME_DONE_TASKS_BY_PERIOD,
     component: DoneTasksByPeriod,
   },
   {

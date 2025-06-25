@@ -10,7 +10,7 @@ import {
   DATE_FNS_FORMAT_ISO_WITH_TIMEZONE,
   DATE_FORMAT_ISO_WITH_TIMEZONE,
 } from '@/constants/dates';
-import { exampleList, projectsList } from '@/constants/example';
+import { exampleList } from '@/constants/example';
 import { ROUTE_NAME_MAIN } from '@/constants/routeNames';
 
 import { useValidation } from '@/composable/useValidation';
@@ -18,39 +18,24 @@ import { useValidation } from '@/composable/useValidation';
 const LABEL_PERIOD = 'Период';
 const LABEL_GROUPS = 'Группы сотрудников';
 const LABEL_EMPLOYEE = 'Сотрудник';
-const LABEL_TYPE_REQUEST = 'Тип заявки';
-const LABEL_PROJECTS = 'Проекты';
-
-const ERROR_MESSAGE = 'Error request message';
 
 type FromModel = {
   period: DateModel;
   groups: User | null;
-  projects: string;
   employee: User[];
-  requestType: {
-    func: boolean,
-    support: boolean
-  }
+  tasks: boolean;
 };
 
 const formModel = ref<FromModel>({
   period: null,
   groups: null,
-  projects: '',
   employee: [],
-  requestType: {
-    func: false,
-    support: false
-  }
+  tasks: false,
 });
 
 const validationRules = computed(() => ({
   period: {
     required: helpers.withMessage(getMessageRequired(LABEL_PERIOD), required),
-  },
-  projects:{
-     required: helpers.withMessage(getMessageRequired(LABEL_PROJECTS), required),
   },
   groups: {
     required: helpers.withMessage(
@@ -71,18 +56,20 @@ const validationRules = computed(() => ({
       ),
     ),
   },
-  requestType: {
-    required: 
-      helpers.withMessage(
-        ERROR_MESSAGE,
-        () => {
-          return (!!formModel.value.requestType.func || !!formModel.value.requestType.support) 
-        }
-      ) 
-    }
+  tasks: {
+    required: helpers.withMessage("Галочка не поставленa", 
+    requiredIf(() => !formModel.value.tasks)),
+  },
 }));
 
 const { formValidation, validateForm } = useValidation(formModel, validationRules);
+
+async function onShow() {
+  const isValid = await validateForm();
+  if (!isValid) return;
+
+  console.log(formModel.value);
+}
 
 async function onPrepare() {
   const isValid = await validateForm();
@@ -95,7 +82,7 @@ async function onPrepare() {
 <template>
   <TitledContent
     :link-to-back="{ name: ROUTE_NAME_MAIN }"
-    title="Анализ изменения статусов задач"
+    title="Недооцененные задачи"
   >
     <BaseForm>
       <DatePeriod
@@ -109,40 +96,6 @@ async function onPrepare() {
         placeholder="Выберите период"
         name="date"
       />
-      <FieldWrapper
-      :label="LABEL_TYPE_REQUEST"
-      :error-message="formValidation.requestType.errorMessage"
-      :error="formValidation.requestType.invalid"
-      :required="formValidation.requestType.required"
-      >
-      <BaseFieldset>
-        <OptionControl
-          v-model:checked="formModel.requestType.func"
-          label="Фунциональное развитие"
-          inputType="checkbox"
-          labelPosition = "right"
-        />
-        <OptionControl
-          v-model:checked="formModel.requestType.support"
-          label="Сопровождение"
-          inputType="checkbox"
-          labelPosition = "right"
-        />
-      </BaseFieldset>
-      </FieldWrapper>
-      <FieldWrapper
-        :label="LABEL_PROJECTS"
-        :error-message="formValidation.projects.errorMessage"
-        :error="formValidation.projects.invalid"
-        :required="formValidation.projects.required"
-      >
-        <BaseSelect
-          v-model="formModel.projects"
-          :options="projectsList"
-          track-by="id"
-          label="name"
-        />
-      </FieldWrapper>
       <FieldWrapper
         :label="LABEL_GROUPS"
         :error-message="formValidation.groups.errorMessage"
@@ -170,7 +123,20 @@ async function onPrepare() {
           label="name"
         />
       </FieldWrapper>
+      <BaseFieldset
+        :error-message="formValidation.tasks.errorMessage"
+        :error="formValidation.tasks.invalid"
+        :required="formValidation.tasks.required"
+      >
+        <OptionControl
+          v-model:checked="formModel.tasks"
+          label ="Задачи с оценкой на ошибки"
+          inputType="checkbox"
+          labelPosition = "right"
+        />
+      </BaseFieldset>
       <HorizontalList>
+        <BaseButton @click="onShow"> Посмотреть </BaseButton>
         <BaseButton @click="onPrepare"> Подготовить к загрузке </BaseButton>
       </HorizontalList>
     </BaseForm>

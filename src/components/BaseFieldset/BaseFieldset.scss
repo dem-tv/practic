@@ -1,10 +1,39 @@
 .fieldset {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 0;
-  padding: 15px 20px;
-  background: var(--color-input-bg);
-  border: 0;
-  border-radius: var(--radius-m);
+  padding: 0;
+  border: none;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    width: 100%;
+    padding: 15px;
+    background: var(--color-input-bg);
+    border-radius: var(--radius-m);
+  }
+
+  &--error &__error {
+    margin-top: 5px;
+    font-size: var(--font-size-label);
+    color: var(--color-negative);
+  }
+
+  &__legend {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: normal;
+    font-size: var(--font-size-text);
+    line-height: var(--line-height-text);
+    color: var(--color-text-main);
+
+    @include min-laptop {
+      margin-bottom: 10px;
+    }
+  }
+
+  &--required &__label::after {
+    content: "*";
+    color: var(--color-negative);
+  }
 }

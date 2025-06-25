@@ -1,50 +1,64 @@
 <script setup lang="ts">
-import { helpers, required } from '@vuelidate/validators';
+import { helpers, required, requiredIf } from '@vuelidate/validators';
 
-import { getMessageRequired } from '@/utils/getMessage';
+import { getMessageRequired, getMessageRequiredIf } from '@/utils/getMessage';
 
 import type { DateModel } from '@/types/datePeriod.types';
+import type { User } from '@/types/example.types';
 
 import {
   DATE_FNS_FORMAT_ISO_WITH_TIMEZONE,
   DATE_FORMAT_ISO_WITH_TIMEZONE,
 } from '@/constants/dates';
-import { projectList, trackerList, typeRequestList } from '@/constants/example';
+import { exampleList } from '@/constants/example';
 import { ROUTE_NAME_MAIN } from '@/constants/routeNames';
 
 import { useValidation } from '@/composable/useValidation';
 
 const LABEL_PERIOD = 'Период';
-const LABEL_PROJECTS = 'Проекты';
-const LABEL_TRACKERS = 'Трекеры';
-const LABEL_UGKPO = 'УГКПО';
-const LABEL_TYPE_REQUEST = 'Тип заявки';
+const LABEL_GROUPS = 'Группы сотрудников';
+const LABEL_EMPLOYEE = 'Сотрудник';
 
 type FromModel = {
   period: DateModel;
-  projects: string;
-  trackers: string;
+  groups: User | null;
+  employee: User[];
   tasks: boolean;
-  requestType: string;
 };
 
 const formModel = ref<FromModel>({
   period: null,
-  projects: '',
-  trackers: '',
+  groups: null,
+  employee: [],
   tasks: false,
-  requestType: '',
 });
 
 const validationRules = computed(() => ({
   period: {
     required: helpers.withMessage(getMessageRequired(LABEL_PERIOD), required),
   },
-  trackers: {
-    required: helpers.withMessage(getMessageRequired(LABEL_TRACKERS), required),
+  groups: {
+    required: helpers.withMessage(
+      getMessageRequiredIf(LABEL_GROUPS, LABEL_EMPLOYEE),
+      requiredIf(
+        () =>
+          !formModel.value.employee.length ||
+          (!formModel.value.employee.length && !formModel.value.groups),
+      ),
+    ),
   },
-  requestType: {
-    required: helpers.withMessage(getMessageRequired(LABEL_TYPE_REQUEST), required),
+  employee: {
+    required: helpers.withMessage(
+      getMessageRequiredIf(LABEL_EMPLOYEE, LABEL_GROUPS),
+      requiredIf(
+        () =>
+          !formModel.value.groups || (!formModel.value.employee.length && !formModel.value.groups),
+      ),
+    ),
+  },
+  tasks: {
+    required: helpers.withMessage("Галочка не поставленa", 
+    requiredIf(() => !formModel.value.tasks)),
   },
 }));
 
@@ -68,7 +82,7 @@ async function onPrepare() {
 <template>
   <TitledContent
     :link-to-back="{ name: ROUTE_NAME_MAIN }"
-    title="Отчет по тестировщикам"
+    title="Недооцененные задачи"
   >
     <BaseForm>
       <DatePeriod
@@ -82,59 +96,43 @@ async function onPrepare() {
         placeholder="Выберите период"
         name="date"
       />
-      <BaseFieldset
-        :legend="LABEL_TYPE_REQUEST"
-        :error-message="formValidation.requestType.errorMessage"
-        :error="formValidation.requestType.invalid"
-        :required="true"
+      <FieldWrapper
+        :label="LABEL_GROUPS"
+        :error-message="formValidation.groups.errorMessage"
+        :error="formValidation.groups.invalid"
+        :required="formValidation.groups.required"
       >
-        <OptionControl
-          v-for="option in typeRequestList"
-          :key="option.id"
-          :value="option.id"
-          name="name"
-          :label="option.name"
-          input-type="radio"
-          label-position="right"
-          :error="formValidation.requestType.invalid"
-          @update:checked="
-            (checked) => {
-              if (!checked) return;
-              formModel.requestType = option;
-            }
-          "
-        />
-      </BaseFieldset>
-      <FieldWrapper :label="LABEL_PROJECTS">
         <BaseSelect
-          v-model="formModel.projects"
-          multiple
-          :options="projectList"
-          placeholder="Выберите из списка"
+          v-model="formModel.groups"
+          :options="exampleList"
           track-by="id"
           label="name"
         />
       </FieldWrapper>
       <FieldWrapper
-        :label="LABEL_TRACKERS"
-        :error-message="formValidation.trackers.errorMessage"
-        :error="formValidation.trackers.invalid"
-        :required="formValidation.trackers.required"
+        :label="LABEL_EMPLOYEE"
+        :error-message="formValidation.employee.errorMessage"
+        :error="formValidation.employee.invalid"
+        :required="formValidation.employee.required"
       >
         <BaseSelect
-          v-model="formModel.trackers"
+          v-model="formModel.employee"
           multiple
-          :options="trackerList"
+          :options="exampleList"
           track-by="id"
           label="name"
         />
       </FieldWrapper>
-      <BaseFieldset>
+      <BaseFieldset
+        :error-message="formValidation.tasks.errorMessage"
+        :error="formValidation.tasks.invalid"
+        :required="formValidation.tasks.required"
+      >
         <OptionControl
           v-model:checked="formModel.tasks"
-          :label="LABEL_UGKPO"
-          input-type="checkbox"
-          label-position="right"
+          label ="Задачи с оценкой на ошибки"
+          inputType="checkbox"
+          labelPosition = "right"
         />
       </BaseFieldset>
       <HorizontalList>

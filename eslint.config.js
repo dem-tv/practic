@@ -33,6 +33,7 @@ export default defineConfigWithVueTs(
   {
     files: ['**/*.js', '**/*.ts', 'src/**/*.vue'],
     rules: {
+      'prettier/prettier': ['error', { endOfLine: 'auto' }],
       quotes: [2, 'single', { avoidEscape: true }],
       '@typescript-eslint/naming-convention': [
         2,

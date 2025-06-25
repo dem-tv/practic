@@ -49,13 +49,14 @@ textarea:disabled::placeholder {
   opacity: 1;
 }
 
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
   appearance: inherit;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {  /* 1. sets text fill to current `color` for safari */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  /* 1. sets text fill to current `color` for safari */
   /* 2. correct opacity on iOS */
   -webkit-appearance: none;
   margin: 0;
@@ -71,7 +72,7 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  font: inherit !important;
+  font: inherit ant;
   -webkit-text-fill-color: var(--color-text-main);
   box-shadow: 0 0 0 1000px var(--color-light) inset;
 }

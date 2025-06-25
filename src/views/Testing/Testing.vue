@@ -82,30 +82,29 @@ async function onPrepare() {
         placeholder="Выберите период"
         name="date"
       />
-      <FieldWrapper
-        :label="LABEL_TYPE_REQUEST"
+      <BaseFieldset
+        :legend="LABEL_TYPE_REQUEST"
         :error-message="formValidation.requestType.errorMessage"
         :error="formValidation.requestType.invalid"
-        :required="formValidation.requestType.required"
+        :required="true"
       >
-        <BaseFieldset v-model="formModel.requestType">
-          <OptionControl
-            v-for="option in typeRequestList"
-            :key="option.id"
-            :value="option.id"
-            name="name"
-            :label="option.name"
-            input-type="radio"
-            label-position="right"
-            @update:checked="
-              (checked) => {
-                if (!checked) return;
-                formModel.requestType = option;
-              }
-            "
-          />
-        </BaseFieldset>
-      </FieldWrapper>
+        <OptionControl
+          v-for="option in typeRequestList"
+          :key="option.id"
+          :value="option.id"
+          name="name"
+          :label="option.name"
+          input-type="radio"
+          label-position="right"
+          :error="formValidation.requestType.invalid"
+          @update:checked="
+            (checked) => {
+              if (!checked) return;
+              formModel.requestType = option;
+            }
+          "
+        />
+      </BaseFieldset>
       <FieldWrapper :label="LABEL_PROJECTS">
         <BaseSelect
           v-model="formModel.projects"
@@ -130,16 +129,14 @@ async function onPrepare() {
           label="name"
         />
       </FieldWrapper>
-      <FieldWrapper>
-        <BaseFieldset>
-          <OptionControl
-            v-model:checked="formModel.tasks"
-            :label="LABEL_UGKPO"
-            input-type="checkbox"
-            label-position="right"
-          />
-        </BaseFieldset>
-      </FieldWrapper>
+      <BaseFieldset>
+        <OptionControl
+          v-model:checked="formModel.tasks"
+          :label="LABEL_UGKPO"
+          input-type="checkbox"
+          label-position="right"
+        />
+      </BaseFieldset>
       <HorizontalList>
         <BaseButton @click="onShow"> Посмотреть </BaseButton>
         <BaseButton @click="onPrepare"> Подготовить к загрузке </BaseButton>

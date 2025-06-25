@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { helpers, required, requiredIf } from '@vuelidate/validators';
+import { helpers, required } from '@vuelidate/validators';
 
 import { getMessageRequired } from '@/utils/getMessage';
 
@@ -9,36 +9,46 @@ import {
   DATE_FNS_FORMAT_ISO_WITH_TIMEZONE,
   DATE_FORMAT_ISO_WITH_TIMEZONE,
 } from '@/constants/dates';
-import { projectList } from '@/constants/example';
+import { applicationTypes, exampleList } from '@/constants/example';
 import { ROUTE_NAME_MAIN } from '@/constants/routeNames';
 
 import { useValidation } from '@/composable/useValidation';
 
 const LABEL_PERIOD = 'Период';
-const LABEL_PROJECTS = 'Проекты';
+const LABEL_APPLICATION_TYPE = 'Тип заявки';
+const LABEL_PROJECT = 'Проекты';
 
 type FromModel = {
   period: DateModel;
-  projects: string;
-  tasks: boolean;
+  requestType: {
+    functional: boolean;
+    accompaniment: boolean;
+  };
+  project: null;
 };
 
 const formModel = ref<FromModel>({
   period: null,
-  projects: '',
-  tasks: false,
+  requestType: {
+    functional: false,
+    accompaniment: false,
+  },
+  project: null,
 });
 
 const validationRules = computed(() => ({
   period: {
     required: helpers.withMessage(getMessageRequired(LABEL_PERIOD), required),
   },
-  projects: {
-    required: helpers.withMessage(getMessageRequired(LABEL_PROJECTS), required),
+  requestType: {
+    required: helpers.withMessage(getMessageRequired(LABEL_APPLICATION_TYPE), () => {
+      return (
+        !!formModel.value.requestType.functional || !!formModel.value.requestType.accompaniment
+      );
+    }),
   },
-  tasks: {
-    required: helpers.withMessage("Галочка не поставленa", 
-    requiredIf(() => !formModel.value.tasks)),
+  project: {
+    required: helpers.withMessage(getMessageRequired(LABEL_PROJECT), required),
   },
 }));
 
@@ -62,7 +72,7 @@ async function onPrepare() {
 <template>
   <TitledContent
     :link-to-back="{ name: ROUTE_NAME_MAIN }"
-    title="Анализ тестирования"
+    title="Заявки, возвращенные на доработку за период"
   >
     <BaseForm>
       <DatePeriod
@@ -76,33 +86,45 @@ async function onPrepare() {
         placeholder="Выберите период"
         name="date"
       />
-       <BaseFieldset
-        :error-message="formValidation.tasks.errorMessage"
-        :error="formValidation.tasks.invalid"
-        :required="formValidation.tasks.required"
+      <BaseFieldset
+        :legend="LABEL_APPLICATION_TYPE"
+        :error-message="formValidation.requestType.errorMessage"
+        :error="formValidation.requestType.invalid"
+        :required="true"
       >
         <OptionControl
-          v-model:checked="formModel.tasks"
-          label ="Только Белинвестбанк"
-          inputType="checkbox"
-          labelPosition = "right"
+          :key="applicationTypes[0].id"
+          v-model:checked="formModel.requestType.functional"
+          input-type="checkbox"
+          :value="applicationTypes[0].id"
+          :label="applicationTypes[0].name"
+          label-position="right"
+          :error="formValidation.requestType.invalid"
+        />
+        <OptionControl
+          :key="applicationTypes[1].id"
+          v-model:checked="formModel.requestType.accompaniment"
+          input-type="checkbox"
+          :value="applicationTypes[1].id"
+          :label="applicationTypes[1].name"
+          label-position="right"
+          :error="formValidation.requestType.invalid"
         />
       </BaseFieldset>
       <FieldWrapper
-        :label="LABEL_PROJECTS"
-        :error-message="formValidation.projects.errorMessage"
-        :error="formValidation.projects.invalid"
-        :required="formValidation.projects.required"
+        :label="LABEL_PROJECT"
+        :error-message="formValidation.project.errorMessage"
+        :error="formValidation.project.invalid"
+        :required="formValidation.project.required"
       >
         <BaseSelect
-          v-model="formModel.projects"
+          v-model="formModel.project"
           multiple
-          :options="projectList"
+          :options="exampleList"
           track-by="id"
           label="name"
         />
       </FieldWrapper>
-     
       <HorizontalList>
         <BaseButton @click="onShow"> Посмотреть </BaseButton>
         <BaseButton @click="onPrepare"> Подготовить к загрузке </BaseButton>

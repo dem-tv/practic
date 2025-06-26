@@ -1,39 +1,32 @@
 <script setup lang="ts">
 import type { NavItem } from '@/types/navigation.types';
 
-import {
-  ROUTE_NAME_LABOR_COSTS_DEPARTMENT,
-  ROUTE_NAME_LABOR_COSTS_DESIGN,
-  ROUTE_NAME_LABOR_COSTS_PROJECT,
-  ROUTE_NAME_LABOR_COSTS_UNDERVALUED_ISSUES,
-  ROUTE_NAME_MANAGEMENT_EMPLOYEES,
-  ROUTE_NAME_USS,
-} from '@/constants/routeNames';
+import { ROUTE_NAME_LABOR_COSTS } from '@/constants/routeNames';
 
 const LIST_NAVIGATION: NavItem[] = [
   {
     title: 'Трудозатраты',
-    to: { name: ROUTE_NAME_LABOR_COSTS_DEPARTMENT },
+    to: { name: ROUTE_NAME_LABOR_COSTS.DEPARTMENT },
   },
   {
     title: 'Трудозатраты УЦС',
-    to: { name: ROUTE_NAME_USS },
+    to: { name: ROUTE_NAME_LABOR_COSTS.USS },
   },
   {
     title: 'Отчет по сотрудникам управления, со статистикой по тружозатратам',
-    to: { name: ROUTE_NAME_MANAGEMENT_EMPLOYEES },
+    to: { name: ROUTE_NAME_LABOR_COSTS.MANAGEMENT_EMPLOYEES },
   },
   {
     title: 'Трудозатраты отдела дизайна',
-    to: { name: ROUTE_NAME_LABOR_COSTS_DESIGN },
+    to: { name: ROUTE_NAME_LABOR_COSTS.DESIGN },
   },
   {
     title: 'Трудозатраты по проектам',
-    to: { name: ROUTE_NAME_LABOR_COSTS_PROJECT },
+    to: { name: ROUTE_NAME_LABOR_COSTS.PROJECT },
   },
   {
     title: 'Недооцененные задачи',
-    to: { name: ROUTE_NAME_LABOR_COSTS_UNDERVALUED_ISSUES },
+    to: { name: ROUTE_NAME_LABOR_COSTS.UNDERVALUED_ISSUES },
   },
 ];
 </script>

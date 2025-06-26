@@ -17,25 +17,25 @@ const NAVIGATION: NavItem[] = [
   {
     title: 'Сопровождение',
     to: {
-      name: ROUTE_NAME_SUPPORT,
+      name: ROUTE_NAME_SUPPORT.MAIN,
     },
   },
   {
     title: 'СМК',
     to: {
-      name: ROUTE_NAME_QMS,
+      name: ROUTE_NAME_QMS.MAIN,
     },
   },
   {
     title: 'Трудозатраты',
     to: {
-      name: ROUTE_NAME_LABOR_COSTS,
+      name: ROUTE_NAME_LABOR_COSTS.MAIN,
     },
   },
   {
     title: 'Бухгалтерия',
     to: {
-      name: ROUTE_NAME_ACCOUNTING,
+      name: ROUTE_NAME_ACCOUNTING.MAIN,
     },
   },
 ];

@@ -18,7 +18,7 @@ const LABEL_COST = 'Стоимость н/ч';
 
 type FromModel = {
   period: DateModel;
-  cost: number;
+  cost: number | null;
 };
 
 const formModel = ref<FromModel>({

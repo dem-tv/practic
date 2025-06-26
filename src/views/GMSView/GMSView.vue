@@ -1,27 +1,24 @@
 <script setup lang="ts">
 import type { NavItem } from '@/types/navigation.types';
 
-import { ROUTE_NAME_INTERNAL_TEST_ANALYSIS,
-  ROUTE_NAME_TEST_ANALYSIS,
-  ROUTE_NAME_APPLICATIONS_PERFORMANCE_EVALUATION,
-  ROUTE_NAME_EFFECTIVENESS_PROCESS } from '@/constants/routeNames';
+import { ROUTE_NAME_QMS } from '@/constants/routeNames';
 
 const LIST_NAVIGATION: NavItem[] = [
   {
     title: 'Анализ внутренних возвратов',
-    to: { name: ROUTE_NAME_INTERNAL_TEST_ANALYSIS },
+    to: { name: ROUTE_NAME_QMS.INTERNAL_TEST_ANALYSIS },
   },
   {
     title: 'Анализ тестирования',
-    to: { name: ROUTE_NAME_TEST_ANALYSIS },
+    to: { name: ROUTE_NAME_QMS.TEST_ANALYSIS },
   },
   {
     title: 'Мониторинг исполнения заявок для оценки результативности',
-    to: { name: ROUTE_NAME_APPLICATIONS_PERFORMANCE_EVALUATION },
+    to: { name: ROUTE_NAME_QMS.APPLICATIONS_PERFORMANCE_EVALUATION },
   },
   {
     title: 'Результативность процесса ОП СМК (сопровождение)',
-    to: { name: ROUTE_NAME_EFFECTIVENESS_PROCESS },
+    to: { name: ROUTE_NAME_QMS.EFFECTIVENESS_PROCESS },
   },
 ];
 </script>

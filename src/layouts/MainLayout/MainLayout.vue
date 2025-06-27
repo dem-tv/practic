@@ -1,10 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SearchPages from '@/components/SearchPages/SearchPages.vue';
+</script>
 
 <template>
   <div class="main-layout">
     <header class="main-layout__header">
       <p>LOGO</p>
-      <p>SEARCH</p>
+      <SearchPages />
     </header>
     <div class="main-layout__content">
       <slot />

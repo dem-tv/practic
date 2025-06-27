@@ -6,6 +6,10 @@
 
   --input-padding-left: var(--padding-horisontal);
   --input-padding-right: var(--padding-horisontal);
+  --input-background: var(--color-input-bg);
+  --input-border-color: var(--color-input-border);
+  --input-border-color-focus: var(--color-input-border);
+  --input-border-color-hover: var(--color-input-border-hover);
 
   @include min-tablet {
     --padding-horisontal: 15px;
@@ -18,18 +22,18 @@
     width: 100%;
     height: fit-content;
     min-height: 48px;
-    background: var(--color-input-bg);
-    border: 1px solid var(--color-input-border);
+    background: var(--input-background);
+    border: 1px solid var(--input-border-color);
     border-radius: var(--radius-m);
     transition: border-color 0.2s ease, background-color 0.2s ease;
   }
 
   &__field:hover {
-    border-color: var(--color-input-border-hover);
+    --input-border-color: var(--input-border-color-hover);
   }
 
   &__field:focus-within {
-    border-color: var(--color-input-border-hover);
+    --input-border-color: var(--input-border-color-focus);
   }
 
   &--active &__field {
@@ -115,11 +119,11 @@
   }
 
   &__icon--append > :nth-child(n) {
-    padding-left: 10px;
+    margin-left: 10px;
   }
 
   &__icon--append > :last-child {
-    padding-right: var(--padding-horisontal);
+    margin-right: var(--padding-horisontal);
   }
 
   &__icon--prepend {

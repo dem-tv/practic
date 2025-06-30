@@ -3,7 +3,7 @@ import type { RouteRecordRaw } from 'vue-router';
 import { accountingRoutes } from './accountingRoutes';
 import { laborCostsRoutes } from './laborCostsRoutes';
 import { QMSRoutes } from './QMSRoutes';
-import { SupportRoutes } from './SupportRoutes';
+import { supportRoutes } from './supportRoutes';
 
 import {
   ROUTE_NAME_ACCOUNTING,
@@ -54,7 +54,7 @@ export const routes: Readonly<RouteRecordRaw[]> = [
   ...laborCostsRoutes,
   ...accountingRoutes,
   ...QMSRoutes,
-  ...SupportRoutes,
+  ...supportRoutes,
   {
     path: '/:pathMatch(.*)*',
     redirect: { name: ROUTE_NAME_MAIN },

@@ -30,7 +30,7 @@ const Testing = () => import('@/views/Testing/Testing.vue');
 const ReceivedTasksByPeriod = () =>
   import('@/views/ReceivedTasksByPeriod/ReceivedTasksByPeriod.vue');
 
-export const SupportRoutes: Readonly<RouteRecordRaw[]> = [
+export const supportRoutes: Readonly<RouteRecordRaw[]> = [
   {
     path: '/analysis-task-status-changes',
     name: ROUTE_NAME_SUPPORT.ANALYSIS_TASK_STATUS_CHANGES,

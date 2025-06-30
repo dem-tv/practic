@@ -32,6 +32,7 @@ declare module 'vue' {
     OptionControl: typeof import('./components/OptionControl/OptionControl.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchPages: typeof import('./components/SearchPages/SearchPages.vue')['default']
     StringButton: typeof import('./components/StringButton/StringButton.vue')['default']
     SvgIcon: typeof import('./components/SvgIcon/SvgIcon.vue')['default']
     TabButton: typeof import('./components/TabButton/TabButton.vue')['default']

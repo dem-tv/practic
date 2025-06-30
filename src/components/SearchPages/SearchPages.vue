@@ -17,8 +17,6 @@ const allNavigation = [
   ...supportNavigation,
 ];
 
-// const pages = allNavigation.map((page) => page.title);
-
 const searchFilter = computed(() => {
   return allNavigation.filter((item) => item.title.toLowerCase().includes(searchQuery.value));
 });
@@ -37,6 +35,12 @@ function onEscape(evt: Event) {
     toggleDropdown(false);
   }
 }
+
+const onFieldClick = () => {
+  if (searchQuery.value) {
+    isDropdownOpened.value = true;
+  }
+};
 </script>
 
 <template>
@@ -55,6 +59,7 @@ function onEscape(evt: Event) {
         type="text"
         placeholder="Введите название"
         :resettable="true"
+        @click="onFieldClick"
       >
         <template #append>
           <SvgIcon name="search-refraction" />

@@ -10,7 +10,7 @@ import { supportNavigation } from '@/constants/supportNavigation';
 const searchQuery = ref('');
 const [isDropdownOpened, toggleDropdown] = useToggle();
 
-const allNavigation = [
+const navigationList = [
   ...accountingNavigation,
   ...QMSNavigation,
   ...laborCostsNavigation,
@@ -18,16 +18,12 @@ const allNavigation = [
 ];
 
 const searchFilter = computed(() => {
-  return allNavigation.filter((item) => item.title.toLowerCase().includes(searchQuery.value));
+  return navigationList.filter((item) => item.title.toLowerCase().includes(searchQuery.value));
 });
 
-watch(searchQuery, (searchValue) => {
-  if (searchValue === '' || searchFilter.value.length === 0) {
-    isDropdownOpened.value = false;
-  } else {
-    isDropdownOpened.value = true;
-  }
-});
+const hasValue = computed(() => !!(searchQuery.value && searchFilter.value.length));
+
+// watch(hasValue, toggleDropdown);
 
 function onEscape(evt: Event) {
   if (isDropdownOpened.value) {
@@ -37,9 +33,7 @@ function onEscape(evt: Event) {
 }
 
 const onFieldClick = () => {
-  if (searchQuery.value) {
-    isDropdownOpened.value = true;
-  }
+  toggleDropdown(true);
 };
 </script>
 
@@ -47,7 +41,7 @@ const onFieldClick = () => {
   <DropDown
     ref="dropdown"
     class="search-pages"
-    :show="isDropdownOpened"
+    :show="hasValue && isDropdownOpened"
     @close="toggleDropdown(false)"
     @keydown.esc="onEscape"
   >
@@ -58,7 +52,7 @@ const onFieldClick = () => {
         name="search"
         type="text"
         placeholder="Введите название"
-        :resettable="true"
+        resettable
         @click="onFieldClick"
       >
         <template #append>

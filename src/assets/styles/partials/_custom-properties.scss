@@ -28,6 +28,8 @@
   --color-gray: #7b7e87;
   --color-negative: #d31818;
 
+  --color-icon-download-hover: #ed4d29;
+  --color-icon-check-rounded: #69ca41;
   /** Fonts */
   --font-primary: "Euclid", "Arial", sans-serif;
 
@@ -64,4 +66,7 @@
   --box-shadow-default: 0px 5px 20px 5px rgba(0, 0, 0, 0.15);
 
   --input-padding-left: 15px;
+
+  --padding-right-icon: 4px;
+  --padding-around-item: 10px;
 }

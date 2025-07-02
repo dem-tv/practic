@@ -14,6 +14,9 @@ import { exampleList, projectsList } from '@/constants/example';
 import { ROUTE_NAME_MAIN } from '@/constants/routeNames';
 
 import { useValidation } from '@/composable/useValidation';
+import { useExampleStore } from '@/stores/useExampleStore';
+
+const exampleStore = useExampleStore();
 
 const LABEL_PERIOD = 'Период';
 const LABEL_GROUPS = 'Группы сотрудников';
@@ -29,9 +32,9 @@ type FromModel = {
   projects: string;
   employee: User[];
   requestType: {
-    func: boolean,
-    support: boolean
-  }
+    func: boolean;
+    support: boolean;
+  };
 };
 
 const formModel = ref<FromModel>({
@@ -41,16 +44,16 @@ const formModel = ref<FromModel>({
   employee: [],
   requestType: {
     func: false,
-    support: false
-  }
+    support: false,
+  },
 });
 
 const validationRules = computed(() => ({
   period: {
     required: helpers.withMessage(getMessageRequired(LABEL_PERIOD), required),
   },
-  projects:{
-     required: helpers.withMessage(getMessageRequired(LABEL_PROJECTS), required),
+  projects: {
+    required: helpers.withMessage(getMessageRequired(LABEL_PROJECTS), required),
   },
   groups: {
     required: helpers.withMessage(
@@ -72,14 +75,10 @@ const validationRules = computed(() => ({
     ),
   },
   requestType: {
-    required: 
-      helpers.withMessage(
-        ERROR_MESSAGE,
-        () => {
-          return (!!formModel.value.requestType.func || !!formModel.value.requestType.support) 
-        }
-      ) 
-    }
+    required: helpers.withMessage(ERROR_MESSAGE, () => {
+      return !!formModel.value.requestType.func || !!formModel.value.requestType.support;
+    }),
+  },
 }));
 
 const { formValidation, validateForm } = useValidation(formModel, validationRules);
@@ -97,6 +96,10 @@ async function onPrepare() {
     :link-to-back="{ name: ROUTE_NAME_MAIN }"
     title="Анализ изменения статусов задач"
   >
+    <input
+      type="text"
+      @change="exampleStore.setState($event.target?.value || '')"
+    />
     <BaseForm>
       <DatePeriod
         v-model="formModel.period"
@@ -110,25 +113,25 @@ async function onPrepare() {
         name="date"
       />
       <FieldWrapper
-      :label="LABEL_TYPE_REQUEST"
-      :error-message="formValidation.requestType.errorMessage"
-      :error="formValidation.requestType.invalid"
-      :required="formValidation.requestType.required"
+        :label="LABEL_TYPE_REQUEST"
+        :error-message="formValidation.requestType.errorMessage"
+        :error="formValidation.requestType.invalid"
+        :required="formValidation.requestType.required"
       >
-      <BaseFieldset>
-        <OptionControl
-          v-model:checked="formModel.requestType.func"
-          label="Фунциональное развитие"
-          inputType="checkbox"
-          labelPosition = "right"
-        />
-        <OptionControl
-          v-model:checked="formModel.requestType.support"
-          label="Сопровождение"
-          inputType="checkbox"
-          labelPosition = "right"
-        />
-      </BaseFieldset>
+        <BaseFieldset>
+          <OptionControl
+            v-model:checked="formModel.requestType.func"
+            label="Фунциональное развитие"
+            input-type="checkbox"
+            label-position="right"
+          />
+          <OptionControl
+            v-model:checked="formModel.requestType.support"
+            label="Сопровождение"
+            input-type="checkbox"
+            label-position="right"
+          />
+        </BaseFieldset>
       </FieldWrapper>
       <FieldWrapper
         :label="LABEL_PROJECTS"

@@ -3,6 +3,8 @@
 declare type IconType =
   | 'arrow'
   | 'calendar'
+  | 'check-rounded'
   | 'chevron'
   | 'cross'
+  | 'download'
   | 'search-refraction';

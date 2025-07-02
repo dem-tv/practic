@@ -30,6 +30,7 @@ declare module 'vue' {
     ListLinkItem: typeof import('./components/ListLinkItem/ListLinkItem.vue')['default']
     NavLink: typeof import('./components/NavLink/NavLink.vue')['default']
     OptionControl: typeof import('./components/OptionControl/OptionControl.vue')['default']
+    ReportsList: typeof import('./components/ReportsList/ReportsList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     StringButton: typeof import('./components/StringButton/StringButton.vue')['default']

@@ -1,0 +1,46 @@
+.reports-list {
+  min-width: 400px;
+
+  &__item,
+  &__title {
+    margin: 0;
+    padding: var(--padding-around-item);
+  }
+
+  &__item-text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  &__item-subtitle {
+    color: var(--color-gray);
+  }
+
+  &__title {
+    font-size: calc(var(--font-size-text) + 1px);
+    line-height: var(--line-height-subtitle);
+    border-bottom: 1px solid var(--color-input-bg);
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s;
+  }
+
+  &__item:hover {
+    background-color: var(--color-input-bg-hover);
+  }
+
+  &__item-download:hover {
+    color: var(--color-icon-download-hover);
+
+    cursor: pointer;
+  }
+
+  &__item-check-rounded {
+    padding-right: var(--padding-right-icon);
+    color: var(--color-icon-check-rounded);
+  }
+}

@@ -1,5 +1,10 @@
 import type { TableColumn } from '@/types/table.types';
 
+export const reportList = [
+  { id: 1, title: 'Недооцененные задачи', subtitle: ' 9 Кб - 30.06.2025 10:03' },
+  { id: 2, title: 'Новые задачи', subtitle: '5 Кб - 04.05.2025 21:52' },
+];
+
 export const exampleList = [
   { id: 1, name: 'Alice', age: 30 },
   { id: 2, name: 'Bob', age: 25 },

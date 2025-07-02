@@ -4,6 +4,7 @@
   <div class="main-layout">
     <header class="main-layout__header">
       <p>LOGO</p>
+      <ReportsList />
       <p>SEARCH</p>
     </header>
     <div class="main-layout__content">

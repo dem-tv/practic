@@ -1,0 +1,30 @@
+.search-pages {
+  width: 500px;
+
+  & &__search-field {
+    --input-background: var(--color-bg);
+  }
+
+  &__search-field:focus-within {
+    --input-border-color-focus: rgb(237, 77, 41);
+  }
+
+  &__link-list {
+    max-height: 440px;
+    overflow: auto;
+    border: solid 0 var(--color-input-bg-hover);
+    border-radius: var(--radius-s);
+  }
+
+  &__link {
+    display: block;
+    padding: 12px;
+    color: var(--color-dark);
+    text-decoration: none;
+    white-space: pre-line;
+  }
+
+  &__link:hover {
+    background-color: var(--color-bg-backdrop);
+  }
+};

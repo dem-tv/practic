@@ -14,8 +14,6 @@ import { exampleList } from '@/constants/example.ts';
 import { ROUTE_NAME_MAIN } from '@/constants/routeNames';
 
 import { useValidation } from '@/composable/useValidation';
-import { group } from 'console';
-
 const LABEL_PERIOD="Период"
 const LABEL_GROUPS="Группы сотрудников"
 

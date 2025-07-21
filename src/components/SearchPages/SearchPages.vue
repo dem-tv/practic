@@ -1,0 +1,82 @@
+<script setup lang="ts">
+import { computed, ref } from 'vue';
+import { useToggle } from '@vueuse/core';
+
+import { accountingNavigation } from '@/constants/accountingNavigation';
+import { laborCostsNavigation } from '@/constants/laborCostsNavigation';
+import { QMSNavigation } from '@/constants/QMSNavigation';
+import { supportNavigation } from '@/constants/supportNavigation';
+
+const searchQuery = ref('');
+const [isDropdownOpened, toggleDropdown] = useToggle();
+
+const navigationList = [
+  ...accountingNavigation,
+  ...QMSNavigation,
+  ...laborCostsNavigation,
+  ...supportNavigation,
+];
+
+const searchFilter = computed(() => {
+  return navigationList.filter((item) => item.title.toLowerCase().includes(searchQuery.value));
+});
+
+const hasValue = computed(() => !!(searchQuery.value && searchFilter.value.length));
+
+// watch(hasValue, toggleDropdown);
+
+function onEscape(evt: Event) {
+  if (isDropdownOpened.value) {
+    evt.stopPropagation();
+    toggleDropdown(false);
+  }
+}
+
+const onFieldClick = () => {
+  toggleDropdown(true);
+};
+</script>
+
+<template>
+  <DropDown
+    ref="dropdown"
+    class="search-pages"
+    :show="hasValue && isDropdownOpened"
+    @close="toggleDropdown(false)"
+    @keydown.esc="onEscape"
+  >
+    <template #activator>
+      <BaseField
+        v-model="searchQuery"
+        class="search-pages__search-field"
+        name="search"
+        type="text"
+        placeholder="Введите название"
+        resettable
+        @click="onFieldClick"
+      >
+        <template #append>
+          <SvgIcon name="search-refraction" />
+        </template>
+      </BaseField>
+    </template>
+    <template #dropdown>
+      <VerticalList
+        class="search-pages__link-list"
+        :items="searchFilter"
+        key-field="title"
+      >
+        <template #item="{ item }">
+          <NavLink
+            class="search-pages__link"
+            :to="item.to"
+          >
+            {{ item.title }}
+          </NavLink>
+        </template>
+      </VerticalList>
+    </template>
+  </DropDown>
+</template>
+
+<style lang="scss" src="../SearchPages/SearchPages.scss"></style>
